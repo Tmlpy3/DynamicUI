@@ -1,6 +1,7 @@
 import { createReadStream, existsSync, statSync } from "node:fs";
 import { createServer } from "node:http";
-import { extname, join, normalize, resolve, sep } from "node:path";
+import { pathToFileURL } from "node:url";
+import { extname, normalize, resolve, sep } from "node:path";
 
 const root = process.cwd();
 const port = Number(process.env.PORT || 4173);
@@ -12,7 +13,7 @@ const contentTypes = {
   ".png": "image/png",
 };
 
-function resolveRequestPath(pathname) {
+export function resolveRequestPath(pathname) {
   const relativePath = pathname === "/" ? "index.html" : pathname.replace(/^[/\\]+/, "");
   const normalizedPath = normalize(relativePath);
   const filePath = resolve(root, normalizedPath);
@@ -24,7 +25,11 @@ function resolveRequestPath(pathname) {
   return filePath;
 }
 
-createServer((request, response) => {
+export function contentTypeFor(filePath) {
+  return contentTypes[extname(filePath)] || "application/octet-stream";
+}
+
+function handleRequest(request, response) {
   const pathname = decodeURIComponent(new URL(request.url, `http://localhost:${port}`).pathname);
   const filePath = resolveRequestPath(pathname);
 
@@ -35,9 +40,13 @@ createServer((request, response) => {
   }
 
   response.writeHead(200, {
-    "Content-Type": contentTypes[extname(filePath)] || "application/octet-stream",
+    "Content-Type": contentTypeFor(filePath),
   });
   createReadStream(filePath).pipe(response);
-}).listen(port, () => {
-  console.log(`DynamicUI dashboard running at http://localhost:${port}`);
-});
+}
+
+if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+  createServer(handleRequest).listen(port, () => {
+    console.log(`DynamicUI dashboard running at http://localhost:${port}`);
+  });
+}

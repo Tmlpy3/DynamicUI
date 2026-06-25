@@ -1,12 +1,6 @@
 import { getScene, NAV_ITEMS, parseRole, SUPPORTED_ROLES } from "./scenes.js";
 import { renderDashboard, renderSidebar } from "./renderers.js";
 
-const shortcutRoles = {
-  1: "elder",
-  2: "dad",
-  3: "mom",
-};
-
 function normalizedRole(role) {
   return SUPPORTED_ROLES.includes(role) ? role : parseRole("");
 }
@@ -45,11 +39,20 @@ document.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
   if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey || event.defaultPrevented) return;
 
-  const role = shortcutRoles[event.key];
-  if (!role) return;
+  if (event.key === "1") {
+    event.preventDefault();
+    switchRole("elder");
+  }
 
-  event.preventDefault();
-  switchRole(role);
+  if (event.key === "2") {
+    event.preventDefault();
+    switchRole("dad");
+  }
+
+  if (event.key === "3") {
+    event.preventDefault();
+    switchRole("mom");
+  }
 });
 
 window.addEventListener("popstate", () => {
