@@ -3,7 +3,6 @@ const SCENE_COPY = {
     greeting: "早上好",
     briefTitle: "今日家中一切正常",
     medicineTitle: "服药提醒",
-    actions: ["拨打家人", "打开电视"],
     quickActions: ["开灯", "调节空调", "服药", "打开电视", "拨打家人"],
   },
   dad: {
@@ -98,7 +97,10 @@ function renderCard(item, className = "mini-card") {
 
 function renderElder(scene) {
   const copy = SCENE_COPY.elder;
-  const [brief, medicine, health, quickActions] = scene.sections;
+  const brief = scene.sections.find((section) => section.id === "brief" || section.type === "elder-brief");
+  const medicine = scene.sections.find((section) => section.id === "medicine" || section.type === "medicine");
+  const health = scene.sections.find((section) => section.id === "health" || section.type === "metrics");
+  const quickActions = scene.sections.find((section) => section.id === "quick-actions" || section.type === "quick-actions");
   const quickLabels = copy.quickActions.map((label, index) => ({
     ...(quickActions?.items?.[index] || {}),
     title: label,
@@ -109,7 +111,7 @@ function renderElder(scene) {
     <section class="panel elder-brief">
       <h2>${text(copy.briefTitle)}</h2>
       <div class="brief-card-grid">${(brief?.cards || []).map((card) => renderCard(card, "brief-card")).join("")}</div>
-      <div class="button-row">${copy.actions.map((label, index) => actionButton(label, index === 0 ? "primary" : "warm")).join("")}</div>
+      <div class="button-row">${(brief?.actions || []).map((label, index) => actionButton(label, index === 0 ? "primary" : "warm")).join("")}</div>
     </section>
     <div class="elder-middle">
       <section class="panel medicine-panel">

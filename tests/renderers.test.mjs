@@ -22,8 +22,8 @@ test("dashboard renders elder scene content without explicit design labels", () 
   assert.ok(html.includes('data-scene="elder"'));
   assert.ok(html.includes("早上好"));
   assert.ok(html.includes("服药提醒"));
-  assert.ok(html.includes("拨打家人"));
-  assert.ok(html.includes("打开电视"));
+  assert.ok(html.includes("我知道了"));
+  assert.ok(html.includes("已吃药"));
   assert.doesNotMatch(html, /长者 · 早晨页面|Zone 1|visible role=elder|role=elder/);
 });
 
