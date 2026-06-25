@@ -147,6 +147,20 @@ function renderDadDeparture(departure = {}) {
             <h2>${text(departure.title)}</h2>
             <div class="button-row dad-brief-actions">${(departure.actions || []).map((label, index) => actionButton(label, index === 0 ? "primary" : "")).join("")}</div>
           </div>
+          <div class="dad-departure-strip" aria-label="Morning departure summary">
+            <div>
+              <span>Leaving window</span>
+              <strong>7:40-8:05 AM</strong>
+            </div>
+            <div>
+              <span>Commute route</span>
+              <strong>Garage ready</strong>
+            </div>
+            <div>
+              <span>Before you go</span>
+              <strong>Keys, mug, packages</strong>
+            </div>
+          </div>
           <div class="dad-brief-grid">
             <div class="dad-info-tile">
               <span class="dad-status-icon">✓</span>

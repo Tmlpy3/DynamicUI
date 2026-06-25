@@ -122,6 +122,7 @@ test("css styles dad morning scene with wide departure overview and non-white in
   assert.ok(css.includes(".dad-info-tile"));
   assert.ok(css.includes(".dad-brief-header"));
   assert.ok(css.includes(".dad-brief-actions"));
+  assert.ok(css.includes(".dad-departure-strip"));
   assert.ok(css.includes(".security-report-top"));
   assert.ok(css.includes(".security-timeline"));
   assert.ok(css.includes(".security-trend"));
@@ -130,7 +131,9 @@ test("css styles dad morning scene with wide departure overview and non-white in
   assert.ok(css.includes(".maintenance-heading-icon"));
   assert.ok(css.includes(".maintenance-focus"));
   assert.ok(css.includes(".schedule-stack"));
-  assert.match(css, /\.dad-brief-copy\s*{[\s\S]*width:\s*min\(760px,\s*68%\)[\s\S]*margin-left:\s*70px/);
+  assert.match(css, /\.dad-brief-copy\s*{[\s\S]*width:\s*min\(760px,\s*68%\)[\s\S]*margin-left:\s*70px[\s\S]*grid-template-rows:\s*auto\s+58px\s+auto/);
+  assert.match(css, /\.dad-departure-strip\s*{[\s\S]*grid-template-columns:\s*0\.86fr\s+0\.86fr\s+1\.28fr[\s\S]*max-width:\s*732px/);
+  assert.match(css, /\.dad-departure-strip strong\s*{[\s\S]*font-size:\s*17px/);
   assert.match(css, /\.dad-brief-grid\s*{[\s\S]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)[\s\S]*max-width:\s*732px/);
   assert.match(css, /\.dad-brief-header\s*{[\s\S]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s+auto/);
   assert.match(css, /\.dad-brief-header h2\s*{[\s\S]*font-size:\s*32px/);
@@ -140,9 +143,10 @@ test("css styles dad morning scene with wide departure overview and non-white in
   assert.match(css, /\.theme-morning-blue\s*{[\s\S]*#f5ead8[\s\S]*#dbe8f0/);
   assert.match(css, /body\[data-scene="dad"\] \.sidebar\s*{[\s\S]*#f8efe2[\s\S]*#e4edf4/);
   assert.match(css, /\.dad-grid\s*{[\s\S]*grid-template-rows:\s*280px\s+minmax\(0,\s*0\.5fr\)\s+minmax\(0,\s*0\.5fr\)\s+156px/);
-  assert.match(css, /\.dad-info-tile\s*{[\s\S]*grid-template-columns:\s*38px\s+minmax\(0,\s*1fr\)[\s\S]*min-height:\s*78px/);
+  assert.match(css, /\.dad-info-tile\s*{[\s\S]*grid-template-columns:\s*34px\s+minmax\(0,\s*1fr\)[\s\S]*min-height:\s*90px/);
   assert.match(css, /\.dad-info-tile strong,[\s\S]*\.dad-package-copy strong\s*{[\s\S]*-webkit-line-clamp:\s*2/);
   assert.match(css, /\.dad-info-tile strong,[\s\S]*\.dad-package-copy strong\s*{[\s\S]*font-size:\s*17px/);
+  assert.match(css, /\.dad-info-tile strong\s*{[\s\S]*overflow:\s*visible[\s\S]*-webkit-line-clamp:\s*unset/);
   assert.match(css, /\.dad-info-tile em,[\s\S]*\.dad-package-copy em\s*{[\s\S]*display:\s*none/);
   assert.doesNotMatch(css, /body\[data-scene="dad"\] \.app-shell\s*{/);
   assert.match(css, /\.leaving-grid div\s*{[\s\S]*background:\s*rgba\(8,\s*24,\s*43,\s*0\.48\)/);
@@ -163,6 +167,8 @@ test("css styles dad morning scene with wide departure overview and non-white in
   assert.match(css, /\.maintenance-list\s*{[\s\S]*grid-template-rows:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
   assert.match(css, /\.maintenance-list div\s*{[\s\S]*align-content:\s*center/);
   assert.match(css, /\.maintenance-list strong\s*{[\s\S]*align-self:\s*center[\s\S]*white-space:\s*nowrap/);
+  assert.match(css, /\.maintenance-focus\s*{[\s\S]*grid-template-columns:\s*34px\s+minmax\(0,\s*1fr\)[\s\S]*height:\s*61px[\s\S]*background:\s*rgba\(255,\s*255,\s*255,\s*0\.44\)/);
+  assert.match(css, /\.maintenance-focus span\s*{[\s\S]*width:\s*34px[\s\S]*background:\s*rgba\(255,\s*255,\s*255,\s*0\.54\)/);
   assert.match(css, /\.maintenance-heading-icon::after\s*{[\s\S]*border:\s*4px\s+solid\s+#7c5f27/);
   assert.match(css, /\.schedule-card\s*{[\s\S]*#cfd9e6/);
   assert.match(css, /\.schedule-stack\s*{[\s\S]*grid-template-rows:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/);
