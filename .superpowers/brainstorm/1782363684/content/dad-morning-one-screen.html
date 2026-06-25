@@ -1,0 +1,93 @@
+<h2>爸爸早晨：单屏完整布局</h2>
+<p class="subtitle">所有 Zone 都在一页内可见，不滚动。用 TV dashboard 网格压缩信息层级，保留关键按钮。</p>
+
+<div class="mockup">
+  <div class="mockup-header">Preview: One-Screen Dad Morning Dashboard</div>
+  <div class="mockup-body" style="height:680px;background:#eef6ff;color:#102033;border-radius:14px;overflow:hidden;padding:0">
+    <div style="display:grid;grid-template-columns:236px minmax(0,1fr);height:680px">
+      <aside style="background:linear-gradient(180deg,#f8fbff,#e8f1ff);border-right:1px solid #d6e4f5;padding:32px 16px 24px;display:flex;flex-direction:column;box-shadow:8px 0 30px rgba(15,23,42,.05)">
+        <div style="min-height:66px;padding:0 18px">
+          <strong style="display:block;font-size:30px;line-height:1;color:#132033">SmartThings</strong>
+          <span style="display:block;margin-top:8px;font-size:12px;letter-spacing:.14em;color:#64748b">SAMSUNG</span>
+        </div>
+        <nav style="display:grid;gap:14px;margin-top:20px">
+          <div style="display:flex;align-items:center;gap:16px;min-height:58px;padding:0 16px;border-radius:12px;background:linear-gradient(96deg,#2563eb,#0f4cb8);color:#fff;box-shadow:0 12px 28px rgba(37,99,235,.24)"><span style="width:26px;text-align:center">⌂</span><span>Home</span></div>
+          <div style="display:flex;align-items:center;gap:16px;min-height:58px;padding:0 16px;border-radius:12px;color:#475569;background:rgba(255,255,255,.58)"><span style="width:26px;text-align:center">▦</span><span>Devices</span></div>
+          <div style="display:flex;align-items:center;gap:16px;min-height:58px;padding:0 16px;border-radius:12px;color:#475569;background:rgba(255,255,255,.58)"><span style="width:26px;text-align:center">↻</span><span>Routines</span></div>
+          <div style="display:flex;align-items:center;gap:16px;min-height:58px;padding:0 16px;border-radius:12px;color:#475569;background:rgba(255,255,255,.58)"><span style="width:26px;text-align:center">♡</span><span>Life</span></div>
+          <div style="display:flex;align-items:center;gap:16px;min-height:58px;padding:0 16px;border-radius:12px;color:#475569;background:rgba(255,255,255,.58)"><span style="width:26px;text-align:center">⚙</span><span>Automations</span></div>
+          <div style="display:flex;align-items:center;gap:16px;min-height:58px;padding:0 16px;border-radius:12px;color:#475569;background:rgba(255,255,255,.58)"><span style="width:26px;text-align:center">▣</span><span>Store</span></div>
+        </nav>
+      </aside>
+
+      <main style="padding:20px 24px;background:linear-gradient(180deg,#edf6ff,#f8fbff);height:680px;box-sizing:border-box;display:grid;grid-template-rows:auto 1fr;gap:14px">
+        <header style="display:flex;justify-content:space-between;align-items:flex-start;gap:18px">
+          <div>
+            <div style="font-size:30px;font-weight:850;line-height:1.15">👋 早上好！今天工作顺利</div>
+            <div style="display:flex;gap:8px;color:#334155;margin-top:9px;font-size:14px">
+              <span style="padding:7px 11px;border:1px solid #c9dcf3;border-radius:999px;background:#fff">🌤 22°C 多云</span>
+              <span style="padding:7px 11px;border:1px solid #c9dcf3;border-radius:999px;background:#fff">上午 7:45</span>
+              <span style="padding:7px 11px;border:1px solid #c9dcf3;border-radius:999px;background:#fff">隐私已开启</span>
+            </div>
+          </div>
+          <button style="border:0;border-radius:999px;background:#1d4ed8;color:#fff;padding:12px 18px;font-weight:850;font-size:16px">出门模式</button>
+        </header>
+
+        <div style="display:grid;grid-template-columns:1.1fr .9fr .9fr;grid-template-rows:1fr .95fr .95fr;gap:12px;min-height:0">
+          <section style="grid-column:1 / 2;grid-row:1 / 2;background:linear-gradient(135deg,#e0f2fe,#fff);border:1px solid #bfdbfe;border-radius:14px;padding:15px;box-shadow:0 10px 22px rgba(30,64,175,.08)">
+            <strong style="font-size:21px">准备出发吧</strong>
+            <div style="font-size:16px;line-height:1.6;color:#1e293b;margin-top:8px">☀️ 家里一切正常<br>⚡ 今日用电 3.2 kWh<br>📦 2 个快递待收</div>
+            <div style="display:flex;gap:8px;margin-top:12px">
+              <button style="border:0;border-radius:10px;background:#1d4ed8;color:#fff;padding:10px 13px;font-weight:800;font-size:14px">一键出门</button>
+              <button style="border:1px solid #cbd5e1;border-radius:10px;background:#fff;color:#102033;padding:10px 13px;font-weight:800;font-size:14px">我知道了</button>
+            </div>
+          </section>
+
+          <section style="grid-column:2 / 4;grid-row:1 / 2;background:#fff;border:1px solid #dbe7f6;border-radius:14px;padding:15px;box-shadow:0 10px 22px rgba(15,23,42,.06)">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <strong style="font-size:20px">夜间安防巡逻报告</strong>
+              <span style="padding:6px 10px;border-radius:999px;background:#dcfce7;color:#166534;font-weight:800;font-size:13px">全夜无异常</span>
+            </div>
+            <div style="display:grid;grid-template-columns:1.2fr .8fr;gap:12px;margin-top:9px;font-size:15px;color:#334155;line-height:1.45">
+              <div>22:00 安防启动 ✅<br>23:15 后院移动（猫）🟡<br>01:30 门口移动（风）🟡<br>06:30 安防解除 ✅</div>
+              <div style="background:#f8fafc;border-radius:10px;padding:10px"><strong>本周趋势</strong><div style="font-size:24px;font-weight:850;color:#15803d">↓30%</div></div>
+            </div>
+          </section>
+
+          <section style="grid-column:1 / 2;grid-row:2 / 3;background:#fff;border:1px solid #dbe7f6;border-radius:14px;padding:14px;box-shadow:0 10px 22px rgba(15,23,42,.06)">
+            <strong style="font-size:18px">传感器状态</strong>
+            <div style="font-size:15px;line-height:1.55;color:#334155;margin-top:8px">🟢 全部正常<br>烟雾 ✅ 漏水 ✅<br>门窗 ✅ 温度 ✅</div>
+          </section>
+
+          <section style="grid-column:2 / 3;grid-row:2 / 3;background:#fff;border:1px solid #dbe7f6;border-radius:14px;padding:14px;box-shadow:0 10px 22px rgba(15,23,42,.06)">
+            <div style="display:flex;justify-content:space-between;gap:8px;align-items:flex-start">
+              <strong style="font-size:18px">设备维护</strong>
+              <button style="border:0;border-radius:9px;background:#0f766e;color:#fff;padding:8px 10px;font-weight:800;font-size:13px;white-space:nowrap">一键购买耗材</button>
+            </div>
+            <div style="font-size:15px;line-height:1.55;color:#334155;margin-top:8px">🔴 净水器滤网<br>🟡 门锁电池 78%<br>🟢 扫地机器人正常</div>
+          </section>
+
+          <section style="grid-column:3 / 4;grid-row:2 / 3;background:#fff;border:1px solid #dbe7f6;border-radius:14px;padding:14px;box-shadow:0 10px 22px rgba(15,23,42,.06)">
+            <strong style="font-size:18px">今天家里的安排</strong>
+            <div style="font-size:15px;line-height:1.55;color:#334155;margin-top:8px">👦 小明 8:00 上学<br>👩 妈妈 4:00 瑜伽<br>👴 爷爷 10:00 体检<br>📦 快递 14:00-16:00</div>
+          </section>
+
+          <section style="grid-column:1 / 4;grid-row:3 / 4;background:#fff;border:1px solid #bfdbfe;border-radius:14px;padding:14px;box-shadow:0 10px 22px rgba(15,23,42,.06)">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:10px">
+              <strong style="font-size:20px">离家检查</strong>
+              <button style="border:0;border-radius:12px;background:#1d4ed8;color:#fff;padding:10px 16px;font-weight:850;font-size:15px">一键出门模式：全部执行</button>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:8px;font-size:14px;color:#334155">
+              <div style="background:#f8fafc;border-radius:10px;padding:9px">✅ 卧室灯<br>关闭</div>
+              <div style="background:#f8fafc;border-radius:10px;padding:9px">✅ 客厅空调<br>关闭</div>
+              <div style="background:#fee2e2;border-radius:10px;padding:9px;color:#991b1b">❌ 厨房灯<br>还开着</div>
+              <div style="background:#f8fafc;border-radius:10px;padding:9px">✅ 卧室窗户<br>已关</div>
+              <div style="background:#f8fafc;border-radius:10px;padding:9px">✅ 门锁<br>已锁</div>
+              <div style="background:#f8fafc;border-radius:10px;padding:9px">✅ 安防模式<br>启动</div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

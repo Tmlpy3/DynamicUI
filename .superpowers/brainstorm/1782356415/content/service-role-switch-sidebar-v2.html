@@ -1,0 +1,82 @@
+<h2>修正：右上角保留角色化问候</h2>
+<p class="subtitle">Sidebar 继续一比一参考 AI-Home-UI；右侧顶部状态栏包含天气、时间、问候，和 md 文档里的页面布局一致。</p>
+
+<div class="mockup">
+  <div class="mockup-header">Preview: Sidebar + Greeting Topbar</div>
+  <div class="mockup-body" style="min-height:520px;background:#07101f;color:#eef4ff;border-radius:14px;overflow:hidden;padding:0">
+    <div style="display:grid;grid-template-columns:236px minmax(0,1fr);min-height:520px">
+      <aside style="background:rgba(2,6,16,.84);border-right:1px solid rgba(170,190,255,.2);padding:32px 16px 24px;display:flex;flex-direction:column">
+        <div style="min-height:66px;padding:0 18px">
+          <strong style="display:block;font-size:30px;line-height:1">SmartThings</strong>
+          <span style="display:block;margin-top:8px;font-size:12px;letter-spacing:.14em;color:#c4c9dc">SAMSUNG</span>
+        </div>
+        <nav style="display:grid;gap:14px;margin-top:20px">
+          <div style="display:flex;align-items:center;gap:16px;min-height:58px;padding:0 16px;border-radius:12px;background:linear-gradient(96deg,rgba(57,97,255,.95),rgba(27,45,112,.76));color:#fff">
+            <img src="http://localhost:4173/assets/icons-ai/home.png" style="width:26px;height:26px;object-fit:contain" />
+            <span>Home</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;min-height:58px;padding:0 16px;border-radius:12px;color:#c4c9dc">
+            <img src="http://localhost:4173/assets/icons-ai/devices.png" style="width:26px;height:26px;object-fit:contain" />
+            <span>Devices</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;min-height:58px;padding:0 16px;border-radius:12px;color:#c4c9dc">
+            <img src="http://localhost:4173/assets/icons-ai/routine.png" style="width:26px;height:26px;object-fit:contain" />
+            <span>Routines</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;min-height:58px;padding:0 16px;border-radius:12px;color:#c4c9dc">
+            <img src="http://localhost:4173/assets/icons-ai/wellbeing.png" style="width:26px;height:26px;object-fit:contain" />
+            <span>Life</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;min-height:58px;padding:0 16px;border-radius:12px;color:#c4c9dc">
+            <img src="http://localhost:4173/assets/icons-ai/ops.png" style="width:26px;height:26px;object-fit:contain" />
+            <span>Automations</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;min-height:58px;padding:0 16px;border-radius:12px;color:#c4c9dc">
+            <img src="http://localhost:4173/assets/icons-ai/package.png" style="width:26px;height:26px;object-fit:contain" />
+            <span>Store</span>
+          </div>
+        </nav>
+      </aside>
+
+      <main style="padding:30px 34px;background:linear-gradient(180deg,rgba(13,21,52,.26),rgba(5,10,26,.72));overflow:hidden">
+        <header style="display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:24px">
+          <div>
+            <div style="font-size:30px;font-weight:800">长者 · 早晨页面</div>
+            <div style="color:#9fb0d6;margin-top:6px">role=elder / morning</div>
+          </div>
+          <div style="display:grid;gap:10px;justify-items:end">
+            <div style="display:flex;gap:10px;color:#d5d9e8">
+              <span style="padding:10px 14px;border:1px solid rgba(155,174,230,.18);border-radius:999px;background:rgba(3,8,25,.45)">🌤 24°C 晴</span>
+              <span style="padding:10px 14px;border:1px solid rgba(155,174,230,.18);border-radius:999px;background:rgba(3,8,25,.45)">上午 7:30</span>
+            </div>
+            <div style="font-size:24px;font-weight:800;color:#fff;text-align:right">👋 王奶奶，早上好！</div>
+          </div>
+        </header>
+
+        <section style="background:linear-gradient(135deg,rgba(255,224,149,.22),rgba(255,255,255,.05));border:1px solid rgba(255,224,149,.26);border-radius:14px;padding:22px;margin-bottom:18px">
+          <div style="font-weight:800;font-size:22px;margin-bottom:12px">🏠 Zone 1: AI 安心看板</div>
+          <div style="display:grid;gap:10px;color:#eef4ff">
+            <div>☀️ 早上好！家里一切正常，今天天气晴 25°C</div>
+            <div>💊 提醒：降压药 7:30 该吃了</div>
+            <div>🔒 门锁已锁好，放心</div>
+          </div>
+        </section>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px">
+          <section style="background:rgba(255,255,255,.06);border:1px solid rgba(170,190,255,.14);border-radius:14px;padding:18px">
+            <div style="font-weight:800;margin-bottom:12px">💊 用药提醒</div>
+            <div>🔴 降压药 7:30 ← 当前</div>
+            <div>⚪ 钙片 12:00</div>
+            <div>⚪ 降糖药 18:00</div>
+          </section>
+          <section style="background:rgba(255,255,255,.06);border:1px solid rgba(170,190,255,.14);border-radius:14px;padding:18px">
+            <div style="font-weight:800;margin-bottom:12px">🏥 健康速览</div>
+            <div>血压 128/82 ✅ 正常</div>
+            <div>步数 350 🚶 目标 3,000</div>
+            <div>室温 24°C 😊 舒适</div>
+          </section>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>

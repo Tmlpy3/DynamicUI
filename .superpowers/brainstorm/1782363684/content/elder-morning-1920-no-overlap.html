@@ -1,0 +1,332 @@
+<h2>长者早晨：1920×1080 无重叠版</h2>
+<p class="subtitle">按真实 TV 画布重排：左侧 300px，右侧固定四行。每个区域有明确高度，不靠压缩文字硬塞。</p>
+
+<style>
+  .preview-wrap {
+    --scale: min(calc((100vw - 96px) / 1920), calc((100vh - 170px) / 1080), 0.62);
+    width: calc(1920px * var(--scale));
+    height: calc(1080px * var(--scale));
+    overflow: hidden;
+    border-radius: 18px;
+    background: #fff8e7;
+    box-shadow: 0 24px 80px rgba(15, 23, 42, 0.18);
+  }
+
+  .screen-1920 {
+    width: 1920px;
+    height: 1080px;
+    transform: scale(var(--scale));
+    transform-origin: top left;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    font-family: Inter, Arial, sans-serif;
+    color: #172033;
+    background: #fff8e7;
+  }
+
+  .side-1920 {
+    padding: 44px 22px 34px;
+    background: linear-gradient(180deg, #fffdf6 0%, #eef6ff 100%);
+    border-right: 1px solid #dbe6f5;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 10px 0 34px rgba(15, 23, 42, 0.06);
+  }
+
+  .brand-1920 {
+    min-height: 98px;
+    padding: 0 24px;
+  }
+
+  .brand-1920 strong {
+    display: block;
+    font-size: 38px;
+    line-height: 1;
+  }
+
+  .brand-1920 span {
+    display: block;
+    margin-top: 10px;
+    color: #64748b;
+    font-size: 15px;
+    letter-spacing: 0.14em;
+  }
+
+  .nav-1920 {
+    display: grid;
+    gap: 18px;
+    margin-top: 22px;
+  }
+
+  .nav-item-1920 {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    min-height: 70px;
+    padding: 0 22px;
+    border-radius: 14px;
+    background: rgba(255, 255, 255, 0.58);
+    color: #475569;
+    font-size: 22px;
+  }
+
+  .nav-item-1920.active {
+    color: #fff;
+    background: linear-gradient(96deg, #2563eb, #1d4ed8);
+    box-shadow: 0 14px 32px rgba(37, 99, 235, 0.25);
+  }
+
+  .main-1920 {
+    padding: 40px 46px 38px;
+    background: linear-gradient(180deg, #fff8e7 0%, #f6fbff 100%);
+    display: grid;
+    grid-template-rows: 120px 330px 250px 250px;
+    gap: 24px;
+    overflow: hidden;
+  }
+
+  .top-1920 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  .greeting-1920 {
+    font-size: 52px;
+    line-height: 1.08;
+    font-weight: 850;
+  }
+
+  .pills-1920 {
+    display: flex;
+    gap: 14px;
+    margin-top: 16px;
+  }
+
+  .pill-1920 {
+    padding: 13px 18px;
+    border: 1px solid #d8e4f4;
+    border-radius: 999px;
+    background: #fff;
+    color: #334155;
+    font-size: 22px;
+  }
+
+  .primary-1920 {
+    border: 0;
+    border-radius: 999px;
+    padding: 18px 30px;
+    background: #1e40af;
+    color: #fff;
+    font-size: 22px;
+    font-weight: 850;
+  }
+
+  .panel-1920 {
+    border: 1px solid #e5e7eb;
+    border-radius: 22px;
+    background: #fff;
+    box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+    min-width: 0;
+    min-height: 0;
+  }
+
+  .summary-1920 {
+    padding: 28px;
+    border-color: #f1d27b;
+    background: linear-gradient(135deg, #fff3c4, #fff);
+  }
+
+  .panel-title-1920 {
+    font-size: 34px;
+    line-height: 1.1;
+    font-weight: 850;
+  }
+
+  .summary-grid-1920 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 22px;
+  }
+
+  .summary-card-1920 {
+    min-height: 126px;
+    padding: 22px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.9);
+    font-size: 26px;
+    line-height: 1.35;
+  }
+
+  .summary-card-1920 span {
+    display: block;
+    margin-top: 8px;
+    color: #64748b;
+    font-size: 21px;
+  }
+
+  .summary-actions-1920 {
+    display: flex;
+    gap: 16px;
+    margin-top: 22px;
+  }
+
+  .summary-actions-1920 button {
+    border: 0;
+    border-radius: 16px;
+    padding: 17px 30px;
+    font-size: 23px;
+    font-weight: 850;
+  }
+
+  .middle-1920 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    min-height: 0;
+  }
+
+  .info-panel-1920 {
+    padding: 24px;
+  }
+
+  .med-grid-1920 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 18px;
+  }
+
+  .metric-grid-1920 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 18px;
+  }
+
+  .mini-card-1920 {
+    min-height: 105px;
+    padding: 17px;
+    border-radius: 16px;
+    background: #f8fafc;
+    color: #334155;
+    font-size: 21px;
+    line-height: 1.35;
+  }
+
+  .mini-card-1920 strong {
+    display: block;
+    color: #172033;
+    font-size: 25px;
+    margin-bottom: 8px;
+  }
+
+  .actions-1920 {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+  }
+
+  .action-1920 {
+    border: 1px solid #e2e8f0;
+    border-radius: 22px;
+    background: #fff;
+    color: #172033;
+    padding: 22px 14px;
+    font-size: 25px;
+    box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08);
+  }
+
+  .action-1920 .icon {
+    font-size: 42px;
+    line-height: 1;
+    margin-bottom: 12px;
+  }
+
+  .action-1920 strong {
+    display: block;
+  }
+
+  .action-1920 span {
+    display: block;
+    margin-top: 8px;
+    color: #64748b;
+    font-size: 22px;
+  }
+</style>
+
+<div class="preview-wrap">
+  <div class="screen-1920">
+    <aside class="side-1920">
+      <div class="brand-1920">
+        <strong>SmartThings</strong>
+        <span>SAMSUNG</span>
+      </div>
+      <nav class="nav-1920">
+        <div class="nav-item-1920 active"><span style="width:32px;text-align:center">⌂</span><span>Home</span></div>
+        <div class="nav-item-1920"><span style="width:32px;text-align:center">▦</span><span>Devices</span></div>
+        <div class="nav-item-1920"><span style="width:32px;text-align:center">↻</span><span>Routines</span></div>
+        <div class="nav-item-1920"><span style="width:32px;text-align:center">♡</span><span>Life</span></div>
+        <div class="nav-item-1920"><span style="width:32px;text-align:center">⚙</span><span>Automations</span></div>
+        <div class="nav-item-1920"><span style="width:32px;text-align:center">▣</span><span>Store</span></div>
+      </nav>
+    </aside>
+
+    <main class="main-1920">
+      <header class="top-1920">
+        <div>
+          <div class="greeting-1920">👋 王奶奶，早上好！</div>
+          <div class="pills-1920">
+            <span class="pill-1920">🌤 24°C 晴</span>
+            <span class="pill-1920">上午 7:30</span>
+          </div>
+        </div>
+        <button class="primary-1920">语音播报</button>
+      </header>
+
+      <section class="panel-1920 summary-1920">
+        <div class="panel-title-1920">家里一切正常</div>
+        <div class="summary-grid-1920">
+          <div class="summary-card-1920">☀️ <strong>天气晴</strong><span>适合上午散步</span></div>
+          <div class="summary-card-1920">💊 <strong>降压药</strong><span>7:30 该吃了</span></div>
+          <div class="summary-card-1920">🔒 <strong>门锁已锁好</strong><span>放心</span></div>
+        </div>
+        <div class="summary-actions-1920">
+          <button style="background:#1e40af;color:#fff">我知道了</button>
+          <button style="background:#f59e0b;color:#111827">已吃药</button>
+        </div>
+      </section>
+
+      <div class="middle-1920">
+        <section class="panel-1920 info-panel-1920">
+          <div class="panel-title-1920">今天的药</div>
+          <div class="med-grid-1920">
+            <div class="mini-card-1920" style="background:#fee2e2;color:#991b1b"><strong>降压药</strong>7:30 当前</div>
+            <div class="mini-card-1920"><strong>钙片</strong>12:00</div>
+            <div class="mini-card-1920"><strong>降糖药</strong>18:00</div>
+          </div>
+        </section>
+
+        <section class="panel-1920 info-panel-1920">
+          <div class="panel-title-1920">健康速览</div>
+          <div class="metric-grid-1920">
+            <div class="mini-card-1920"><strong>128/82</strong>血压正常</div>
+            <div class="mini-card-1920"><strong>350</strong>今日步数</div>
+            <div class="mini-card-1920"><strong>24°C</strong>室温舒适</div>
+            <div class="mini-card-1920"><strong>62kg</strong>体重稳定</div>
+          </div>
+        </section>
+      </div>
+
+      <section class="actions-1920">
+        <button class="action-1920"><div class="icon">💡</div><strong>灯光</strong><span>关</span></button>
+        <button class="action-1920"><div class="icon">❄️</div><strong>空调</strong><span>25°C</span></button>
+        <button class="action-1920"><div class="icon">🔐</div><strong>门锁</strong><span style="color:#15803d">已锁</span></button>
+        <button class="action-1920"><div class="icon">📞</div><strong>家人</strong><span>呼叫</span></button>
+        <button class="action-1920" style="background:#fee2e2;color:#7f1d1d;border-color:#fecaca"><div class="icon">🆘</div><strong>求助</strong><span style="color:#991b1b">紧急</span></button>
+      </section>
+    </main>
+  </div>
+</div>
