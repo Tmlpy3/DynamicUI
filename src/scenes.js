@@ -80,7 +80,7 @@ export const SCENES = {
         type: "dad-brief",
         title: "出门前总览",
         lines: ["全屋设备运行正常", "今日能耗 3.2 kWh", "门口有 2 件包裹待取"],
-        actions: ["一键出门模式：全部执行", "朗读今日安排"],
+        actions: ["一键出门", "我知道了"],
       },
       {
         id: "security",
@@ -152,7 +152,7 @@ export const SCENES = {
         type: "elder-care",
         title: "爷爷今日活动节奏",
         items: ["起床 7:00", "早餐 7:30", "散步 9:00-11:00", "午餐 12:00", "午休 13:00-14:00", "看电视 16:00"],
-        status: "今日精彩回放",
+        status: "今日规律正常",
       },
       {
         id: "family",

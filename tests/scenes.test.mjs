@@ -65,9 +65,25 @@ test("required dad actions are present", () => {
   }
 });
 
+test("dad departure and leaving actions match the spec", () => {
+  const departure = SCENES.dad.sections.find((section) => section.id === "departure");
+  const leaving = SCENES.dad.sections.find((section) => section.id === "leaving");
+
+  assert.deepEqual(departure.actions, ["一键出门", "我知道了"]);
+  assert.equal(leaving.action, "一键出门模式：全部执行");
+});
+
 test("required mom evening content is present", () => {
   const text = JSON.stringify(SCENES.mom);
   for (const phrase of ["晚上好！该准备晚餐啦", "活动量比平时少 20%", "叫小明吃饭", "今日精彩回放", "一键执行节能建议"]) {
     assert.ok(text.includes(phrase), phrase);
   }
+});
+
+test("mom elder-care status and camera action match the spec", () => {
+  const elderCare = SCENES.mom.sections.find((section) => section.id === "elder-care");
+  const camera = SCENES.mom.sections.find((section) => section.id === "camera");
+
+  assert.equal(elderCare.status, "今日规律正常");
+  assert.ok(camera.actions.includes("今日精彩回放"));
 });
