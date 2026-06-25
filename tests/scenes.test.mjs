@@ -58,6 +58,12 @@ test("required elder content is present", () => {
   }
 });
 
+test("elder home brief actions match the spec", () => {
+  const brief = SCENES.elder.sections.find((section) => section.id === "brief");
+
+  assert.deepEqual(brief.actions, ["我知道了", "已吃药"]);
+});
+
 test("required dad actions are present", () => {
   const text = JSON.stringify(SCENES.dad);
   for (const phrase of ["一键购买耗材", "一键出门模式：全部执行", "厨房灯", "全夜无异常", "今天工作顺利"]) {

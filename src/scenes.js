@@ -30,7 +30,7 @@ export const SCENES = {
           { icon: "💊", title: "降压药", detail: "7:30 需要服用", tone: "warn" },
           { icon: "🔒", title: "门锁", detail: "已锁好", tone: "good" },
         ],
-        actions: ["朗读今日安排", "药物提醒"],
+        actions: ["我知道了", "已吃药"],
       },
       {
         id: "medicine",
