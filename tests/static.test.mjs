@@ -112,3 +112,12 @@ test("css includes one-screen grids for all three scenes", () => {
     assert.ok(css.includes(selector), selector);
   }
 });
+
+test("css reserves enough elder dashboard height for quick actions", () => {
+  const css = readFileSync("styles.css", "utf8");
+
+  assert.doesNotMatch(css, /grid-template-rows:\s*104px\s+270px\s+170px\s+minmax\(0,\s*1fr\)/);
+  assert.match(css, /\.theme-morning-warm\s*{[\s\S]*grid-template-rows:\s*88px\s+230px\s+150px\s+minmax\(150px,\s*1fr\)/);
+  assert.match(css, /\.quick-action-grid\s*{[\s\S]*grid-auto-rows:\s*minmax\(150px,\s*1fr\)/);
+  assert.doesNotMatch(css, /\.quick-action\s*{[^}]*overflow:\s*hidden/);
+});
