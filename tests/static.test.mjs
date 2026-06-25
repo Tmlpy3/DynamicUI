@@ -89,3 +89,22 @@ test("required sidebar icons exist", () => {
     assert.ok(existsSync(`assets/icons-ai/${icon}.png`), icon);
   }
 });
+
+test("css defines fixed 16:9 stage and no-scroll dashboard contract", () => {
+  const css = readFileSync("styles.css", "utf8");
+
+  assert.ok(css.includes("aspect-ratio: 16 / 9"));
+  assert.ok(css.includes("overflow: hidden"));
+  assert.ok(css.includes("grid-template-columns: 300px minmax(0, 1fr)"));
+  assert.ok(css.includes(".theme-morning-warm"));
+  assert.ok(css.includes(".theme-morning-blue"));
+  assert.ok(css.includes(".theme-evening-dark"));
+});
+
+test("css includes one-screen grids for all three scenes", () => {
+  const css = readFileSync("styles.css", "utf8");
+
+  for (const selector of [".theme-morning-warm", ".dad-grid", ".mom-top-grid", ".mom-bottom-grid", ".quick-action-grid"]) {
+    assert.ok(css.includes(selector), selector);
+  }
+});
