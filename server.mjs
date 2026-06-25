@@ -29,9 +29,30 @@ export function contentTypeFor(filePath) {
   return contentTypes[extname(filePath)] || "application/octet-stream";
 }
 
+export function requestPathFor(requestUrl) {
+  try {
+    const pathname = new URL(requestUrl, `http://localhost:${port}`).pathname;
+
+    return { status: 200, pathname: decodeURIComponent(pathname) };
+  } catch (error) {
+    if (error instanceof URIError) {
+      return { status: 400, pathname: null };
+    }
+
+    throw error;
+  }
+}
+
 function handleRequest(request, response) {
-  const pathname = decodeURIComponent(new URL(request.url, `http://localhost:${port}`).pathname);
-  const filePath = resolveRequestPath(pathname);
+  const requestPath = requestPathFor(request.url);
+
+  if (requestPath.status === 400) {
+    response.writeHead(400, { "Content-Type": "text/plain; charset=utf-8" });
+    response.end("Bad request");
+    return;
+  }
+
+  const filePath = resolveRequestPath(requestPath.pathname);
 
   if (!filePath || !existsSync(filePath) || statSync(filePath).isDirectory()) {
     response.writeHead(404, { "Content-Type": "text/plain; charset=utf-8" });
@@ -45,7 +66,7 @@ function handleRequest(request, response) {
   createReadStream(filePath).pipe(response);
 }
 
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
   createServer(handleRequest).listen(port, () => {
     console.log(`DynamicUI dashboard running at http://localhost:${port}`);
   });

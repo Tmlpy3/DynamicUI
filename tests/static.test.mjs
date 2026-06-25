@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import test from "node:test";
@@ -21,16 +22,35 @@ test("server supports html css js and png content types", () => {
 });
 
 test("server maps root requests to index and resolves static content types", async () => {
-  const { contentTypeFor, resolveRequestPath } = await import("../server.mjs");
+  const { contentTypeFor, requestPathFor, resolveRequestPath } = await import("../server.mjs");
 
   assert.equal(resolveRequestPath("/"), join(process.cwd(), "index.html"));
   assert.equal(resolveRequestPath("/src/app.js"), join(process.cwd(), "src", "app.js"));
   assert.equal(resolveRequestPath("/../package.json"), null);
+  assert.deepEqual(requestPathFor("/"), { status: 200, pathname: "/" });
   assert.equal(contentTypeFor("index.html"), "text/html; charset=utf-8");
   assert.equal(contentTypeFor("styles.css"), "text/css; charset=utf-8");
   assert.equal(contentTypeFor("src/app.js"), "text/javascript; charset=utf-8");
   assert.equal(contentTypeFor("assets/icons-ai/home.png"), "image/png");
   assert.equal(contentTypeFor("README.md"), "application/octet-stream");
+});
+
+test("server rejects malformed request paths without throwing", async () => {
+  const { requestPathFor } = await import("../server.mjs");
+
+  assert.deepEqual(requestPathFor("/%E0%A4%A"), { status: 400, pathname: null });
+  assert.doesNotThrow(() => requestPathFor("/%E0%A4%A"));
+});
+
+test("server module can be imported without process argv entrypoint", () => {
+  const result = spawnSync(
+    process.execPath,
+    ["-e", "import('./server.mjs').then(() => console.log('import-ok'))"],
+    { cwd: process.cwd(), encoding: "utf8" },
+  );
+
+  assert.equal(result.status, 0, result.stderr);
+  assert.match(result.stdout, /import-ok/);
 });
 
 test("app mounts sidebar and dashboard from scene data", () => {
