@@ -130,14 +130,20 @@ test("css styles dad morning scene with wide departure overview and non-white in
   assert.ok(css.includes(".maintenance-heading-icon"));
   assert.ok(css.includes(".maintenance-focus"));
   assert.ok(css.includes(".schedule-stack"));
-  assert.match(css, /\.dad-brief-grid\s*{[\s\S]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(css, /\.dad-brief-copy\s*{[\s\S]*width:\s*min\(760px,\s*68%\)[\s\S]*margin-left:\s*70px/);
+  assert.match(css, /\.dad-brief-grid\s*{[\s\S]*grid-template-columns:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)[\s\S]*max-width:\s*732px/);
   assert.match(css, /\.dad-brief-header\s*{[\s\S]*grid-template-columns:\s*minmax\(0,\s*1fr\)\s+auto/);
-  assert.ok(css.includes('url("assets/backgrounds/dad-morning-departure-wide.png") center / 100% 100% no-repeat'));
+  assert.match(css, /\.dad-brief-header h2\s*{[\s\S]*font-size:\s*32px/);
+  assert.ok(css.includes('url("assets/backgrounds/dad-morning-departure-fullrow.png") center / cover no-repeat'));
   assert.ok(css.includes("--dad-card-bg"));
   assert.doesNotMatch(css, /minmax\(300px,\s*1\.28fr\)/);
   assert.match(css, /\.theme-morning-blue\s*{[\s\S]*#f5ead8[\s\S]*#dbe8f0/);
   assert.match(css, /body\[data-scene="dad"\] \.sidebar\s*{[\s\S]*#f8efe2[\s\S]*#e4edf4/);
-  assert.match(css, /\.dad-grid\s*{[\s\S]*grid-template-rows:\s*220px\s+minmax\(0,\s*0\.58fr\)\s+minmax\(0,\s*0\.58fr\)\s+164px/);
+  assert.match(css, /\.dad-grid\s*{[\s\S]*grid-template-rows:\s*280px\s+minmax\(0,\s*0\.5fr\)\s+minmax\(0,\s*0\.5fr\)\s+156px/);
+  assert.match(css, /\.dad-info-tile\s*{[\s\S]*grid-template-columns:\s*38px\s+minmax\(0,\s*1fr\)[\s\S]*min-height:\s*78px/);
+  assert.match(css, /\.dad-info-tile strong,[\s\S]*\.dad-package-copy strong\s*{[\s\S]*-webkit-line-clamp:\s*2/);
+  assert.match(css, /\.dad-info-tile strong,[\s\S]*\.dad-package-copy strong\s*{[\s\S]*font-size:\s*17px/);
+  assert.match(css, /\.dad-info-tile em,[\s\S]*\.dad-package-copy em\s*{[\s\S]*display:\s*none/);
   assert.doesNotMatch(css, /body\[data-scene="dad"\] \.app-shell\s*{/);
   assert.match(css, /\.leaving-grid div\s*{[\s\S]*background:\s*rgba\(8,\s*24,\s*43,\s*0\.48\)/);
   assert.match(css, /\.leaving-grid div\s*{[\s\S]*color:\s*#fff/);
@@ -145,8 +151,9 @@ test("css styles dad morning scene with wide departure overview and non-white in
   assert.match(css, /\.leaving-grid div\s*{[\s\S]*white-space:\s*nowrap/);
   assert.match(css, /\.leaving-grid div\s*{[\s\S]*text-overflow:\s*ellipsis/);
   assert.match(css, /\.security-report\s*{[\s\S]*radial-gradient/);
-  assert.match(css, /\.security-report\s*{[\s\S]*grid-template-rows:\s*auto\s+minmax\(0,\s*1fr\)\s+auto/);
+  assert.match(css, /\.security-report\s*{[\s\S]*grid-template-rows:\s*auto\s+auto\s+auto/);
   assert.match(css, /\.security-timeline\s*{[\s\S]*overflow:\s*hidden/);
+  assert.match(css, /\.security-timeline\s*{[\s\S]*align-content:\s*center/);
   assert.match(css, /\.security-report\s*{[\s\S]*#d7d1c4/);
   assert.match(css, /\.security-timeline p\s*{[\s\S]*background:\s*rgba\(255,\s*255,\s*255,\s*0\.46\)/);
   assert.match(css, /\.sensor-card\s*{[\s\S]*#c8dce7/);
@@ -154,6 +161,8 @@ test("css styles dad morning scene with wide departure overview and non-white in
   assert.match(css, /\.maintenance-card\s*{[\s\S]*#d8ccb3/);
   assert.match(css, /\.maintenance-card\s*{[\s\S]*grid-template-rows:\s*auto\s+auto\s+minmax\(0,\s*1fr\)/);
   assert.match(css, /\.maintenance-list\s*{[\s\S]*grid-template-rows:\s*repeat\(3,\s*minmax\(0,\s*1fr\)\)/);
+  assert.match(css, /\.maintenance-list div\s*{[\s\S]*align-content:\s*center/);
+  assert.match(css, /\.maintenance-list strong\s*{[\s\S]*align-self:\s*center[\s\S]*white-space:\s*nowrap/);
   assert.match(css, /\.maintenance-heading-icon::after\s*{[\s\S]*border:\s*4px\s+solid\s+#7c5f27/);
   assert.match(css, /\.schedule-card\s*{[\s\S]*#cfd9e6/);
   assert.match(css, /\.schedule-stack\s*{[\s\S]*grid-template-rows:\s*repeat\(4,\s*minmax\(0,\s*1fr\)\)/);
@@ -164,7 +173,7 @@ test("css styles dad morning scene with wide departure overview and non-white in
 });
 
 test("dad morning departure background asset exists", () => {
-  const asset = readFileSync("assets/backgrounds/dad-morning-departure-wide.png");
+  const asset = readFileSync("assets/backgrounds/dad-morning-departure-fullrow.png");
 
   assert.ok(asset.length > 100_000);
 });
@@ -173,10 +182,52 @@ test("css reserves enough elder dashboard height for quick actions", () => {
   const css = readFileSync("styles.css", "utf8");
 
   assert.doesNotMatch(css, /grid-template-rows:\s*104px\s+270px\s+170px\s+minmax\(0,\s*1fr\)/);
-  assert.match(css, /\.theme-morning-warm\s*{[\s\S]*grid-template-rows:\s*116px\s+320px\s+205px\s+minmax\(230px,\s*1fr\)/);
-  assert.match(css, /\.quick-action-grid\s*{[\s\S]*grid-auto-rows:\s*minmax\(230px,\s*1fr\)/);
-  assert.match(css, /\.metric-grid \.mini-card\s*{[\s\S]*min-height:\s*82px/);
+  assert.match(css, /\.theme-morning-warm\s*{[\s\S]*grid-template-rows:\s*170px\s+420px\s+270px\s+minmax\(245px,\s*1fr\)/);
+  assert.match(css, /\.quick-action-grid\s*{[\s\S]*grid-auto-rows:\s*minmax\(245px,\s*1fr\)/);
+  assert.match(css, /\.metric-grid \.mini-card\s*{[\s\S]*min-height:\s*132px/);
   assert.doesNotMatch(css, /\.quick-action\s*{[^}]*overflow:\s*hidden/);
+});
+
+test("css styles elder morning brief with grandma background and non-white panels", () => {
+  const css = readFileSync("styles.css", "utf8");
+
+  assert.ok(css.includes('url("assets/backgrounds/elder-grandma-morning-wide.png") center / 100% 100% no-repeat'));
+  assert.match(css, /\.elder-brief\s*{[\s\S]*color:\s*#fff/);
+  assert.match(css, /\.theme-morning-warm \.status-pills span\s*{[\s\S]*font-size:\s*34px/);
+  assert.match(css, /\.elder-brief h2\s*{[\s\S]*font-size:\s*40px[\s\S]*white-space:\s*nowrap/);
+  assert.match(css, /\.brief-card\s*{[\s\S]*min-height:\s*180px[\s\S]*font-size:\s*34px/);
+  assert.match(css, /\.brief-card \.card-icon\s*{[\s\S]*font-size:\s*52px/);
+  assert.match(css, /\.elder-brief \.action-button\s*{[\s\S]*min-height:\s*54px[\s\S]*font-size:\s*21px/);
+  assert.doesNotMatch(css, /body\[data-scene="elder"\] \.scene-topbar h1\s*{/);
+  assert.doesNotMatch(css, /body\[data-scene="elder"\] \.brand/);
+  assert.doesNotMatch(css, /body\[data-scene="elder"\] \.nav-label\s*{/);
+  assert.doesNotMatch(css, /body\[data-scene="elder"\] \.nav-icon/);
+  assert.doesNotMatch(css, /body\[data-scene="elder"\] \.nav-item\s*{[^}]*min-height/);
+  assert.doesNotMatch(css, /\.elder-middle \.panel h2\s*{/);
+  assert.match(css, /\.mini-card\s*{[\s\S]*font-size:\s*26px[\s\S]*overflow:\s*hidden/);
+  assert.match(css, /\.metric-grid \.mini-card\s*{[\s\S]*font-size:\s*24px/);
+  assert.match(css, /\.medicine-panel\s*{[\s\S]*rgba\(236,\s*218,\s*180,\s*0\.96\)/);
+  assert.match(css, /\.health-panel\s*{[\s\S]*rgba\(207,\s*224,\s*231,\s*0\.96\)/);
+  assert.match(css, /\.quick-action-grid\s*{[\s\S]*container-type:\s*size/);
+  assert.match(css, /\.quick-action-grid\s*{[\s\S]*align-items:\s*center[\s\S]*gap:\s*8px/);
+  assert.match(css, /\.quick-action-grid\s*{[\s\S]*padding-inline:\s*8px/);
+  assert.match(css, /\.quick-action\s*{[\s\S]*width:\s*100%[\s\S]*height:\s*100%[\s\S]*justify-self:\s*center/);
+  assert.match(css, /\.quick-action\s*{[\s\S]*box-sizing:\s*border-box/);
+  assert.match(css, /\.quick-action\s*{[\s\S]*border-radius:\s*26px/);
+  assert.match(css, /\.quick-action span\s*{[\s\S]*font-size:\s*100px/);
+  assert.match(css, /\.quick-action strong\s*{[\s\S]*font-size:\s*44px/);
+  assert.match(css, /\.quick-action em\s*{[\s\S]*font-size:\s*34px/);
+  assert.match(css, /\.quick-action\s*{[\s\S]*display:\s*grid[\s\S]*grid-template-rows:\s*auto\s+auto\s+auto[\s\S]*align-content:\s*space-evenly/);
+  const elderPanelBlock = css.match(/\.theme-morning-warm \.panel\s*{[^}]*}/)?.[0] || "";
+  assert.doesNotMatch(elderPanelBlock, /background:\s*rgba\(255,\s*255,\s*255/);
+  const quickActionBlock = css.match(/\.quick-action\s*{[^}]*}/)?.[0] || "";
+  assert.doesNotMatch(quickActionBlock, /background:\s*#fff/);
+});
+
+test("elder grandma morning background asset exists", () => {
+  const asset = readFileSync("assets/backgrounds/elder-grandma-morning-wide.png");
+
+  assert.ok(asset.length > 100_000);
 });
 
 test("css gives mom pet care enough height for full evening content", () => {

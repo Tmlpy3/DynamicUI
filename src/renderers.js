@@ -290,6 +290,7 @@ function renderDad(scene) {
           </div>
         </div>
         <div class="security-timeline">${(security?.events || [])
+          .slice(0, 2)
           .map((event) => `<div><span></span><p>${text(event)}</p></div>`)
           .join("")}</div>
         <p class="security-trend">${text(security?.trend)}</p>
