@@ -1,22 +1,3 @@
-const SCENE_COPY = {
-  elder: {
-    greeting: "早上好",
-    briefTitle: "今日家中一切正常",
-    medicineTitle: "服药提醒",
-    quickActions: ["开灯", "调节空调", "服药", "打开电视", "拨打家人"],
-  },
-  dad: {
-    actions: ["一键购买耗材", "一键出门模式：全部执行"],
-    kitchenLight: "厨房灯",
-  },
-  mom: {
-    greeting: "晚上好！该准备晚餐啦",
-    insight: "活动量比平时少 20%",
-    energyAction: "一键执行节能建议",
-    cameraAction: "搜索事件",
-  },
-};
-
 function escapeHtml(value) {
   return String(value ?? "")
     .replaceAll("&", "&amp;")
@@ -80,11 +61,11 @@ export function renderSidebar(items) {
     </aside>`;
 }
 
-function renderTopbar(scene, greeting = scene.greeting) {
+function renderTopbar(scene) {
   return `
     <header class="scene-topbar">
       <div>
-        <h1>${text(greeting)}</h1>
+        <h1>${text(scene.greeting)}</h1>
         <div class="status-pills">
           <span>${text(scene.weather)}</span>
           <span>${text(scene.time)}</span>
@@ -107,26 +88,21 @@ function renderCard(item, className = "mini-card") {
 }
 
 function renderElder(scene) {
-  const copy = SCENE_COPY.elder;
   const brief = findSection(scene, "brief", "elder-brief");
   const medicine = findSection(scene, "medicine");
   const health = findSection(scene, "health", "metrics");
   const quickActions = findSection(scene, "quick-actions");
-  const quickLabels = copy.quickActions.map((label, index) => ({
-    ...(quickActions?.items?.[index] || {}),
-    title: label,
-  }));
 
   return `
-    ${renderTopbar(scene, copy.greeting)}
+    ${renderTopbar(scene)}
     <section class="panel elder-brief">
-      <h2>${text(copy.briefTitle)}</h2>
+      <h2>${text(brief?.title)}</h2>
       <div class="brief-card-grid">${(brief?.cards || []).map((card) => renderCard(card, "brief-card")).join("")}</div>
       <div class="button-row">${(brief?.actions || []).map((label, index) => actionButton(label, index === 0 ? "primary" : "warm")).join("")}</div>
     </section>
     <div class="elder-middle">
       <section class="panel medicine-panel">
-        <h2>${text(copy.medicineTitle)}</h2>
+        <h2>${text(medicine?.title)}</h2>
         <div class="mini-grid medicine-grid">${(medicine?.items || []).map((item) => renderCard(item)).join("")}</div>
       </section>
       <section class="panel health-panel">
@@ -135,7 +111,7 @@ function renderElder(scene) {
       </section>
     </div>
     <section class="quick-action-grid" aria-label="${text(quickActions?.title)}">
-      ${quickLabels.map((item) => `
+      ${(quickActions?.items || []).map((item) => `
         <button class="${cx("quick-action", item.tone)}" type="button">
           ${item.icon ? `<span>${text(item.icon)}</span>` : ""}
           <strong>${text(item.title)}</strong>
@@ -145,14 +121,12 @@ function renderElder(scene) {
 }
 
 function renderDad(scene) {
-  const copy = SCENE_COPY.dad;
   const departure = findSection(scene, "departure", "dad-brief");
   const security = findSection(scene, "security", "security-report");
   const sensors = findSection(scene, "sensors", "compact-list");
   const maintenance = findSection(scene, "maintenance");
   const schedule = findSection(scene, "schedule");
   const leaving = findSection(scene, "leaving", "leaving-check");
-  const leavingItems = [...(leaving?.items || []), copy.kitchenLight];
 
   return `
     ${renderTopbar(scene)}
@@ -177,7 +151,7 @@ function renderDad(scene) {
       <section class="panel compact-panel">
         <div class="panel-heading">
           <h2>${text(maintenance?.title)}</h2>
-          ${actionButton(copy.actions[0], "teal")}
+          ${maintenance?.action ? actionButton(maintenance.action, "teal") : ""}
         </div>
         ${renderList(maintenance?.items)}
       </section>
@@ -188,15 +162,14 @@ function renderDad(scene) {
       <section class="panel leaving-panel">
         <div class="panel-heading">
           <h2>${text(leaving?.title)}</h2>
-          ${actionButton(copy.actions[1], "primary")}
+          ${leaving?.action ? actionButton(leaving.action, "primary") : ""}
         </div>
-        <div class="leaving-grid">${leavingItems.map((item) => `<div>${text(item)}</div>`).join("")}</div>
+        <div class="leaving-grid">${(leaving?.items || []).map((item) => `<div>${text(item)}</div>`).join("")}</div>
       </section>
     </div>`;
 }
 
 function renderMom(scene) {
-  const copy = SCENE_COPY.mom;
   const pet = findSection(scene, "pet", "pet-care");
   const elderCare = findSection(scene, "elder-care");
   const family = findSection(scene, "family", "family-status");
@@ -205,14 +178,14 @@ function renderMom(scene) {
   const suggestions = findSection(scene, "suggestions");
 
   return `
-    ${renderTopbar(scene, copy.greeting)}
+    ${renderTopbar(scene)}
     <div class="mom-top-grid">
       <section class="panel pet-panel">
         <h2>${text(pet?.title)}</h2>
         <div class="pet-layout">
           ${renderList(pet?.events, "event-list")}
           <aside class="pet-insight">
-            <strong>${text(copy.insight)}</strong>
+            <strong>${text(pet?.insight)}</strong>
             <span>${text(pet?.water)}</span>
             <span>${text(pet?.next)}</span>
           </aside>
@@ -237,7 +210,7 @@ function renderMom(scene) {
       <section class="panel camera-panel">
         <h2>${text(camera?.title)}</h2>
         ${renderList(camera?.events, "event-list")}
-        <div class="button-row">${[...(camera?.actions || []), copy.cameraAction].map((label, index) => actionButton(label, index === 0 ? "primary" : "")).join("")}</div>
+        <div class="button-row">${(camera?.actions || []).map((label, index) => actionButton(label, index === 0 ? "primary" : "")).join("")}</div>
       </section>
       <section class="panel energy-panel">
         <h2>${text(energy?.title)}</h2>
@@ -257,7 +230,7 @@ function renderMom(scene) {
       <section class="panel suggestions-panel">
         <h2>${text(suggestions?.title)}</h2>
         ${renderList(suggestions?.items)}
-        <div class="button-row">${actionButton(copy.energyAction, "primary")}</div>
+        <div class="button-row">${suggestions?.action ? actionButton(suggestions.action, "primary") : ""}</div>
       </section>
     </div>`;
 }
