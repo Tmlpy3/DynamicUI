@@ -46,6 +46,17 @@ function renderList(items = [], className = "copy-list") {
   return `<ul class="${attr(className)}">${items.map((item) => `<li>${text(item)}</li>`).join("")}</ul>`;
 }
 
+function findSection(scene, ...keys) {
+  return scene.sections.find((section) => keys.includes(section.id) || keys.includes(section.type));
+}
+
+function safePercent(value) {
+  const numeric = Number.parseFloat(value);
+
+  if (!Number.isFinite(numeric)) return 0;
+  return Math.min(100, Math.max(0, numeric));
+}
+
 function renderSidebarItem(item, active = false) {
   return `
     <a class="${cx("nav-item", active && "active")}" href="${attr(item.href || "#")}">
@@ -97,10 +108,10 @@ function renderCard(item, className = "mini-card") {
 
 function renderElder(scene) {
   const copy = SCENE_COPY.elder;
-  const brief = scene.sections.find((section) => section.id === "brief" || section.type === "elder-brief");
-  const medicine = scene.sections.find((section) => section.id === "medicine" || section.type === "medicine");
-  const health = scene.sections.find((section) => section.id === "health" || section.type === "metrics");
-  const quickActions = scene.sections.find((section) => section.id === "quick-actions" || section.type === "quick-actions");
+  const brief = findSection(scene, "brief", "elder-brief");
+  const medicine = findSection(scene, "medicine");
+  const health = findSection(scene, "health", "metrics");
+  const quickActions = findSection(scene, "quick-actions");
   const quickLabels = copy.quickActions.map((label, index) => ({
     ...(quickActions?.items?.[index] || {}),
     title: label,
@@ -135,7 +146,12 @@ function renderElder(scene) {
 
 function renderDad(scene) {
   const copy = SCENE_COPY.dad;
-  const [departure, security, sensors, maintenance, schedule, leaving] = scene.sections;
+  const departure = findSection(scene, "departure", "dad-brief");
+  const security = findSection(scene, "security", "security-report");
+  const sensors = findSection(scene, "sensors", "compact-list");
+  const maintenance = findSection(scene, "maintenance");
+  const schedule = findSection(scene, "schedule");
+  const leaving = findSection(scene, "leaving", "leaving-check");
   const leavingItems = [...(leaving?.items || []), copy.kitchenLight];
 
   return `
@@ -181,7 +197,12 @@ function renderDad(scene) {
 
 function renderMom(scene) {
   const copy = SCENE_COPY.mom;
-  const [pet, elderCare, family, camera, energy, suggestions] = scene.sections;
+  const pet = findSection(scene, "pet", "pet-care");
+  const elderCare = findSection(scene, "elder-care");
+  const family = findSection(scene, "family", "family-status");
+  const camera = findSection(scene, "camera", "camera-events");
+  const energy = findSection(scene, "energy");
+  const suggestions = findSection(scene, "suggestions");
 
   return `
     ${renderTopbar(scene, copy.greeting)}
@@ -222,12 +243,16 @@ function renderMom(scene) {
         <h2>${text(energy?.title)}</h2>
         <strong class="energy-value">${text(energy?.usage)}</strong>
         <span>${text(energy?.cost)}</span>
-        ${(energy?.split || []).map(([label, value]) => `
+        ${(energy?.split || []).map(([label, value]) => {
+          const percent = safePercent(value);
+
+          return `
           <div class="energy-bar">
             <span>${text(label)}</span>
-            <b style="--value:${attr(value)}%"></b>
-            <strong>${text(value)}%</strong>
-          </div>`).join("")}
+            <b style="--value:${percent}%"></b>
+            <strong>${percent}%</strong>
+          </div>`;
+        }).join("")}
       </section>
       <section class="panel suggestions-panel">
         <h2>${text(suggestions?.title)}</h2>
