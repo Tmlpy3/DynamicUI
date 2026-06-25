@@ -86,4 +86,5 @@ test("mom elder-care status and camera action match the spec", () => {
 
   assert.equal(elderCare.status, "今日规律正常");
   assert.ok(camera.actions.includes("今日精彩回放"));
+  assert.ok(camera.actions.includes("搜索事件"));
 });

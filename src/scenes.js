@@ -166,7 +166,7 @@ export const SCENES = {
         type: "camera-events",
         title: "摄像头事件时间线",
         events: ["07:15 包裹送达", "09:30 识别到爷爷", "14:22 今日精彩回放", "16:00 宠物在后院活动"],
-        actions: ["今日精彩回放", "查看全部录像"],
+        actions: ["今日精彩回放", "搜索事件"],
       },
       {
         id: "energy",
