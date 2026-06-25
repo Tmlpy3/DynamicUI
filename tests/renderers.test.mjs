@@ -99,6 +99,14 @@ test("dashboard renders dad sections by id or type when scene sections are reord
   assert.ok(html.includes("厨房灯"));
 });
 
+test("dashboard renders dad scene icons from the mockup direction", () => {
+  const html = renderDashboard(getScene("dad"));
+
+  for (const icon of ["☀", "✅", "⚡", "🔒", "🎥", "💧", "🧃", "👦", "⚠", "🛡"]) {
+    assert.ok(html.includes(icon), icon);
+  }
+});
+
 test("dashboard renders mom evening content and camera action", () => {
   const html = renderDashboard(getScene("mom"));
 
@@ -122,6 +130,22 @@ test("dashboard renders mom pet insight and actions from scene data", () => {
   }
 
   assert.ok(html.includes(suggestions.action));
+});
+
+test("dashboard renders mom scene icons from the mockup direction", () => {
+  const html = renderDashboard(getScene("mom"));
+
+  for (const icon of ["🌙", "✅", "🐱", "👦", "📦", "🎉", "❄️", "🔌"]) {
+    assert.ok(html.includes(icon), icon);
+  }
+});
+
+test("dashboard renders mom family action only inside the family panel", () => {
+  const scene = getScene("mom");
+  const family = scene.sections.find((section) => section.id === "family");
+  const html = renderDashboard(scene);
+
+  assert.equal(html.split(family.action).length - 1, 1);
 });
 
 test("dashboard renders mom sections by id or type when scene sections are reordered", () => {

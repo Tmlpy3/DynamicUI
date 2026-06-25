@@ -71,7 +71,7 @@ function renderTopbar(scene) {
           <span>${text(scene.time)}</span>
         </div>
       </div>
-      ${actionButton(scene.primaryAction, "primary")}
+      ${scene.primaryAction ? actionButton(scene.primaryAction, "primary") : ""}
     </header>`;
 }
 

@@ -6,7 +6,7 @@
   color-scheme: light dark;
   --shadow-soft: 0 22px 60px rgba(15, 23, 42, 0.14);
   --shadow-dark: 0 24px 70px rgba(0, 0, 0, 0.24);
-  --radius-panel: 20px;
+  --radius-panel: 22px;
 }
 
 html,
@@ -53,7 +53,7 @@ button {
   z-index: 1;
   height: 100%;
   min-width: 0;
-  padding: 34px 20px 28px;
+  padding: 44px 22px 34px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -61,13 +61,13 @@ button {
 }
 
 .brand {
-  min-height: 92px;
-  padding: 4px 20px 0;
+  min-height: 98px;
+  padding: 0 24px;
 }
 
 .brand strong {
   display: block;
-  font-size: 32px;
+  font-size: 38px;
   line-height: 1;
   font-weight: 850;
   letter-spacing: 0;
@@ -76,15 +76,15 @@ button {
 .brand span {
   display: block;
   margin-top: 10px;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 800;
   letter-spacing: 0.16em;
 }
 
 .nav-list {
   display: grid;
-  gap: 12px;
-  margin-top: 18px;
+  gap: 18px;
+  margin-top: 22px;
 }
 
 .sidebar-bottom {
@@ -94,12 +94,12 @@ button {
 }
 
 .nav-item {
-  min-height: 58px;
-  padding: 0 18px;
+  min-height: 70px;
+  padding: 0 22px;
   display: flex;
   align-items: center;
-  gap: 16px;
-  border-radius: 999px;
+  gap: 18px;
+  border-radius: 14px;
   color: inherit;
   text-decoration: none;
 }
@@ -125,7 +125,7 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 19px;
+  font-size: 22px;
   font-weight: 750;
 }
 
@@ -134,9 +134,9 @@ button {
   z-index: 1;
   height: 100%;
   min-width: 0;
-  padding: 30px 34px;
+  padding: 40px 46px 38px;
   display: grid;
-  gap: 18px;
+  gap: 22px;
   overflow: hidden;
 }
 
@@ -149,11 +149,11 @@ button {
 }
 
 .scene-topbar h1 {
-  max-width: 1120px;
+  max-width: 1180px;
   margin: 0;
   overflow-wrap: anywhere;
-  font-size: 42px;
-  line-height: 1.04;
+  font-size: 50px;
+  line-height: 1.08;
   font-weight: 900;
   letter-spacing: 0;
 }
@@ -166,23 +166,23 @@ button {
 }
 
 .status-pills {
-  margin-top: 13px;
+  margin-top: 16px;
 }
 
 .status-pills span {
-  padding: 9px 14px;
+  padding: 12px 17px;
   border-radius: 999px;
-  font-size: 18px;
+  font-size: 21px;
   font-weight: 750;
 }
 
 .action-button {
-  min-height: 48px;
+  min-height: 54px;
   max-width: 100%;
-  padding: 12px 22px;
+  padding: 14px 24px;
   border: 0;
   border-radius: 999px;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 850;
   line-height: 1.1;
   overflow-wrap: anywhere;
@@ -193,8 +193,8 @@ button {
 .scene-topbar > .action-button {
   flex: 0 0 auto;
   max-width: 360px;
-  min-height: 56px;
-  padding-inline: 28px;
+  min-height: 62px;
+  padding-inline: 30px;
 }
 
 .action-button.primary {
@@ -215,7 +215,7 @@ button {
 .panel {
   min-width: 0;
   min-height: 0;
-  padding: 18px;
+  padding: 21px;
   border-radius: var(--radius-panel);
   overflow: hidden;
   box-shadow: var(--shadow-soft);
@@ -224,7 +224,7 @@ button {
 .panel h2 {
   margin: 0;
   overflow-wrap: anywhere;
-  font-size: 26px;
+  font-size: 30px;
   line-height: 1.12;
   font-weight: 880;
   letter-spacing: 0;
@@ -253,14 +253,14 @@ button {
 
 .copy-list li,
 .event-list li {
-  margin: 8px 0;
+  margin: 9px 0;
   overflow-wrap: anywhere;
-  font-size: 18px;
-  line-height: 1.24;
+  font-size: 20px;
+  line-height: 1.3;
 }
 
 .theme-morning-warm {
-  grid-template-rows: 88px 260px 150px minmax(120px, 1fr);
+  grid-template-rows: 116px 320px 205px minmax(230px, 1fr);
   background:
     radial-gradient(circle at 72% 14%, rgba(255, 237, 168, 0.72), transparent 34%),
     linear-gradient(180deg, #fff8e7 0%, #f7fbff 100%);
@@ -300,8 +300,8 @@ body[data-scene="elder"] .nav-item.active {
 .brief-card-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-  margin-top: 16px;
+  gap: 18px;
+  margin-top: 22px;
 }
 
 .brief-card,
@@ -314,21 +314,22 @@ body[data-scene="elder"] .nav-item.active {
 }
 
 .brief-card {
-  min-height: 108px;
-  padding: 14px;
-  font-size: 20px;
+  min-height: 126px;
+  padding: 22px;
+  font-size: 24px;
+  line-height: 1.3;
 }
 
 .brief-card .card-icon {
   display: block;
-  font-size: 28px;
+  font-size: 34px;
   line-height: 1;
 }
 
 .brief-card strong,
 .mini-card strong {
   display: block;
-  margin-top: 7px;
+  margin-top: 8px;
 }
 
 .brief-card span:last-child,
@@ -339,20 +340,20 @@ body[data-scene="elder"] .nav-item.active {
 }
 
 .elder-brief .button-row {
-  margin-top: 16px;
+  margin-top: 22px;
 }
 
 .elder-middle {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 18px;
+  gap: 24px;
   min-height: 0;
 }
 
 .mini-grid {
   display: grid;
-  gap: 12px;
-  margin-top: 14px;
+  gap: 14px;
+  margin-top: 18px;
 }
 
 .medicine-grid {
@@ -364,15 +365,17 @@ body[data-scene="elder"] .nav-item.active {
 }
 
 .mini-card {
-  padding: 12px;
-  font-size: 18px;
+  min-height: 98px;
+  padding: 17px;
+  font-size: 20px;
+  line-height: 1.3;
 }
 
 .quick-action-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
-  grid-auto-rows: minmax(120px, 1fr);
-  gap: 14px;
+  grid-auto-rows: minmax(230px, 1fr);
+  gap: 18px;
   min-height: 0;
   overflow: hidden;
 }
@@ -380,9 +383,9 @@ body[data-scene="elder"] .nav-item.active {
 .quick-action {
   min-width: 0;
   min-height: 0;
-  padding: 12px 10px;
+  padding: 22px 14px;
   border: 1px solid #e2e8f0;
-  border-radius: 18px;
+  border-radius: 22px;
   overflow-wrap: anywhere;
   color: #172033;
   background: #fff;
@@ -391,27 +394,27 @@ body[data-scene="elder"] .nav-item.active {
 
 .quick-action span {
   display: block;
-  font-size: 30px;
+  font-size: 42px;
   line-height: 1;
 }
 
 .quick-action strong {
   display: block;
-  margin-top: 8px;
-  font-size: 20px;
+  margin-top: 12px;
+  font-size: 25px;
   line-height: 1.12;
 }
 
 .quick-action em {
   display: block;
-  margin-top: 6px;
+  margin-top: 8px;
   color: #64748b;
-  font-size: 15px;
+  font-size: 20px;
   font-style: normal;
 }
 
 .theme-morning-blue {
-  grid-template-rows: 100px minmax(0, 1fr);
+  grid-template-rows: 116px minmax(0, 1fr);
   background:
     radial-gradient(circle at 74% 18%, rgba(147, 197, 253, 0.46), transparent 36%),
     linear-gradient(180deg, #edf6ff 0%, #f8fbff 100%);
@@ -443,8 +446,8 @@ body[data-scene="dad"] .nav-item.active {
   min-height: 0;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr 0.95fr;
-  grid-template-rows: 1.08fr 0.92fr 0.82fr;
-  gap: 14px;
+  grid-template-rows: 1fr 0.9fr 0.68fr;
+  gap: 16px;
   overflow: hidden;
 }
 
@@ -455,7 +458,7 @@ body[data-scene="dad"] .nav-item.active {
 
 .dad-brief {
   grid-column: 1;
-  grid-row: 1 / 3;
+  grid-row: 1;
 }
 
 .security-report {
@@ -464,12 +467,19 @@ body[data-scene="dad"] .nav-item.active {
 
 .leaving-panel {
   grid-column: 1 / 4;
+  grid-row: 3;
 }
 
 .compact-panel .action-button {
-  min-height: 40px;
-  padding: 9px 14px;
-  font-size: 15px;
+  min-height: 44px;
+  padding: 10px 16px;
+  font-size: 16px;
+}
+
+.compact-panel .copy-list li {
+  margin: 7px 0;
+  font-size: 18px;
+  line-height: 1.24;
 }
 
 .trend {
@@ -487,22 +497,22 @@ body[data-scene="dad"] .nav-item.active {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 10px;
-  margin-top: 12px;
+  margin-top: 14px;
 }
 
 .leaving-grid div {
   min-width: 0;
-  min-height: 48px;
-  padding: 10px;
+  min-height: 54px;
+  padding: 11px;
   border-radius: 12px;
   overflow-wrap: anywhere;
   background: #f1f7ff;
-  font-size: 16px;
-  line-height: 1.15;
+  font-size: 17px;
+  line-height: 1.2;
 }
 
 .theme-evening-dark {
-  grid-template-rows: 96px 280px 154px minmax(0, 1fr);
+  grid-template-rows: 110px 315px 140px minmax(0, 1fr);
   background:
     radial-gradient(circle at 72% 16%, rgba(190, 24, 93, 0.24), transparent 34%),
     linear-gradient(180deg, #111827 0%, #12101f 100%);
@@ -544,7 +554,7 @@ body[data-scene="mom"] .nav-item.active {
 .mom-bottom-grid {
   min-height: 0;
   display: grid;
-  gap: 16px;
+  gap: 22px;
   overflow: hidden;
 }
 
@@ -558,15 +568,15 @@ body[data-scene="mom"] .nav-item.active {
 
 .pet-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: 12px;
-  margin-top: 12px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 14px;
+  margin-top: 14px;
   min-height: 0;
 }
 
 .pet-insight {
   min-width: 0;
-  padding: 14px;
+  padding: 16px;
   border-radius: 16px;
   overflow-wrap: anywhere;
   background: rgba(124, 58, 237, 0.18);
@@ -579,22 +589,22 @@ body[data-scene="mom"] .nav-item.active {
 }
 
 .pet-insight strong {
-  font-size: 18px;
-  line-height: 1.18;
+  font-size: 22px;
+  line-height: 1.25;
 }
 
 .pet-insight span {
-  margin-top: 8px;
+  margin-top: 9px;
   color: #ddd6fe;
-  font-size: 16px;
-  line-height: 1.2;
+  font-size: 18px;
+  line-height: 1.25;
 }
 
 .routine-grid,
 .family-grid {
   display: grid;
-  gap: 10px;
-  margin-top: 12px;
+  gap: 14px;
+  margin-top: 15px;
 }
 
 .routine-grid {
@@ -607,16 +617,16 @@ body[data-scene="mom"] .nav-item.active {
 .theme-evening-dark .event-list li,
 .theme-evening-dark .copy-list li {
   min-width: 0;
-  padding: 9px 10px;
-  border-radius: 12px;
+  padding: 10px 12px;
+  border-radius: 13px;
   overflow-wrap: anywhere;
   background: rgba(15, 23, 42, 0.36);
 }
 
 .routine-grid li,
 .family-grid div {
-  font-size: 16px;
-  line-height: 1.18;
+  font-size: 18px;
+  line-height: 1.24;
 }
 
 .family-grid {
@@ -625,14 +635,14 @@ body[data-scene="mom"] .nav-item.active {
 
 .camera-panel .button-row,
 .suggestions-panel .button-row {
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 .camera-panel .action-button,
 .suggestions-panel .action-button {
-  min-height: 42px;
-  padding: 9px 14px;
-  font-size: 15px;
+  min-height: 44px;
+  padding: 10px 16px;
+  font-size: 16px;
 }
 
 .energy-value {
@@ -646,21 +656,22 @@ body[data-scene="mom"] .nav-item.active {
   display: block;
   margin-bottom: 8px;
   color: #ddd6fe;
-  font-size: 17px;
+  font-size: 18px;
 }
 
 .energy-bar {
   display: grid;
-  grid-template-columns: 74px minmax(0, 1fr) 42px;
+  grid-template-columns: 82px minmax(0, 1fr) 42px;
   align-items: center;
-  gap: 9px;
-  margin-top: 8px;
+  gap: 10px;
+  margin-top: 9px;
+  font-size: 17px;
 }
 
 .energy-bar b {
   position: relative;
   display: block;
-  height: 14px;
+  height: 16px;
   border-radius: 999px;
   overflow: hidden;
   background: rgba(148, 163, 184, 0.28);
