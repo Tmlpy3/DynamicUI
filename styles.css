@@ -39,10 +39,8 @@ button {
 }
 
 .app-shell {
-  width: min(100vw, 177.7778vh);
-  height: min(100vh, 56.25vw);
-  min-width: 960px;
-  min-height: 540px;
+  width: min(100vw, calc(100vh * 16 / 9));
+  height: min(100vh, calc(100vw * 9 / 16));
   display: grid;
   grid-template-columns: 300px minmax(0, 1fr);
   aspect-ratio: 16 / 9;
@@ -678,11 +676,6 @@ body[data-scene="mom"] .nav-item.active {
 }
 
 @media (max-height: 720px) {
-  .app-shell {
-    min-width: 0;
-    min-height: 0;
-  }
-
   .sidebar {
     padding-block: 24px;
   }

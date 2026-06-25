@@ -96,6 +96,10 @@ test("css defines fixed 16:9 stage and no-scroll dashboard contract", () => {
   assert.ok(css.includes("aspect-ratio: 16 / 9"));
   assert.ok(css.includes("overflow: hidden"));
   assert.ok(css.includes("grid-template-columns: 300px minmax(0, 1fr)"));
+  assert.ok(css.includes("width: min(100vw, calc(100vh * 16 / 9))"));
+  assert.ok(css.includes("height: min(100vh, calc(100vw * 9 / 16))"));
+  assert.doesNotMatch(css, /min-width:\s*960px/);
+  assert.doesNotMatch(css, /min-height:\s*540px/);
   assert.ok(css.includes(".theme-morning-warm"));
   assert.ok(css.includes(".theme-morning-blue"));
   assert.ok(css.includes(".theme-evening-dark"));
