@@ -27,6 +27,15 @@ function renderList(items = [], className = "copy-list") {
   return `<ul class="${attr(className)}">${items.map((item) => `<li>${text(item)}</li>`).join("")}</ul>`;
 }
 
+function leadingIcon(value, fallback = "•") {
+  const match = String(value ?? "").match(/^[^\p{L}\p{N}]+/u);
+  return match?.[0]?.trim() || fallback;
+}
+
+function stripLeadingIcon(value) {
+  return String(value ?? "").replace(/^[^\p{L}\p{N}]+/u, "").trim();
+}
+
 function renderCameraPlayer(preview = {}) {
   return `
     <div class="camera-player" aria-label="${attr(preview.title || "Camera playback preview")}">
@@ -128,6 +137,105 @@ function renderCard(item, className = "mini-card") {
     </article>`;
 }
 
+function renderDadDeparture(departure = {}) {
+  const [deviceLine = "", energyLine = "", packageLine = ""] = departure.lines || [];
+
+  return `
+      <section class="panel dad-brief">
+        <div class="dad-brief-copy">
+          <div class="dad-brief-header">
+            <h2>${text(departure.title)}</h2>
+            <div class="button-row dad-brief-actions">${(departure.actions || []).map((label, index) => actionButton(label, index === 0 ? "primary" : "")).join("")}</div>
+          </div>
+          <div class="dad-brief-grid">
+            <div class="dad-info-tile">
+              <span class="dad-status-icon">✓</span>
+              <span>
+                <strong>${text(stripLeadingIcon(deviceLine))}</strong>
+                <em>Home systems are ready</em>
+              </span>
+            </div>
+            <div class="dad-info-tile">
+              <span class="dad-status-icon">⚡</span>
+              <span>
+                <strong>${text(stripLeadingIcon(energyLine))}</strong>
+                <em>Energy use is on track</em>
+              </span>
+            </div>
+            <div class="dad-info-tile">
+              <span class="dad-status-icon">📦</span>
+              <span>
+                <strong>${text(stripLeadingIcon(packageLine))}</strong>
+                <em>Package area at the front door</em>
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>`;
+}
+
+function renderDadSensorStatus(section = {}) {
+  const items = section.items || [];
+
+  return `
+      <section class="panel dad-detail-card sensor-card">
+        <div class="dad-detail-heading">
+          <span class="dad-detail-icon sensor-heading-icon" aria-hidden="true"></span>
+          <h2>${text(section.title)}</h2>
+        </div>
+        <div class="sensor-status-grid">${items
+          .map((item) => `
+          <div>
+            <span>${text(leadingIcon(item))}</span>
+            <strong>${text(stripLeadingIcon(item))}</strong>
+          </div>`)
+          .join("")}</div>
+      </section>`;
+}
+
+function renderDadMaintenance(section = {}) {
+  const [primary = "", ...rest] = section.items || [];
+
+  return `
+      <section class="panel dad-detail-card maintenance-card">
+        <div class="dad-detail-heading">
+          <span class="dad-detail-icon maintenance-heading-icon" aria-hidden="true"></span>
+          <h2>${text(section.title)}</h2>
+          ${section.action ? actionButton(section.action, "teal") : ""}
+        </div>
+        <div class="maintenance-focus">
+          <span>${text(leadingIcon(primary, "⚠"))}</span>
+          <strong>${text(stripLeadingIcon(primary))}</strong>
+        </div>
+        <div class="maintenance-list">${rest
+          .map((item) => `
+          <div>
+            <span>${text(leadingIcon(item))}</span>
+            <strong>${text(stripLeadingIcon(item))}</strong>
+          </div>`)
+          .join("")}</div>
+      </section>`;
+}
+
+function renderDadSchedule(section = {}) {
+  const items = section.items || [];
+
+  return `
+      <section class="panel dad-detail-card schedule-card">
+        <div class="dad-detail-heading">
+          <span class="dad-detail-icon">📅</span>
+          <h2>${text(section.title)}</h2>
+        </div>
+        <div class="schedule-stack">${items
+          .map((item) => `
+          <div>
+            <span>${text(leadingIcon(item))}</span>
+            <strong>${text(stripLeadingIcon(item))}</strong>
+          </div>`)
+          .join("")}</div>
+      </section>`;
+}
+
 function renderElder(scene) {
   const brief = findSection(scene, "brief", "elder-brief");
   const medicine = findSection(scene, "medicine");
@@ -172,34 +280,23 @@ function renderDad(scene) {
   return `
     ${renderTopbar(scene)}
     <div class="dad-grid">
-      <section class="panel dad-brief">
-        <h2>${text(departure?.title)}</h2>
-        ${renderList(departure?.lines)}
-        <div class="button-row">${(departure?.actions || []).map((label, index) => actionButton(label, index === 0 ? "primary" : "")).join("")}</div>
-      </section>
+      ${renderDadDeparture(departure)}
       <section class="panel security-report">
-        <div class="panel-heading">
-          <h2>${text(security?.title)}</h2>
-          <strong>${text(security?.status)}</strong>
+        <div class="security-report-top">
+          <span class="security-shield">🛡</span>
+          <div>
+            <h2>${text(security?.title)}</h2>
+            <strong>${text(security?.status)}</strong>
+          </div>
         </div>
-        ${renderList(security?.events, "event-list")}
-        <p class="trend">${text(security?.trend)}</p>
+        <div class="security-timeline">${(security?.events || [])
+          .map((event) => `<div><span></span><p>${text(event)}</p></div>`)
+          .join("")}</div>
+        <p class="security-trend">${text(security?.trend)}</p>
       </section>
-      <section class="panel compact-panel">
-        <h2>${text(sensors?.title)}</h2>
-        ${renderList(sensors?.items)}
-      </section>
-      <section class="panel compact-panel">
-        <div class="panel-heading">
-          <h2>${text(maintenance?.title)}</h2>
-          ${maintenance?.action ? actionButton(maintenance.action, "teal") : ""}
-        </div>
-        ${renderList(maintenance?.items)}
-      </section>
-      <section class="panel compact-panel">
-        <h2>${text(schedule?.title)}</h2>
-        ${renderList(schedule?.items)}
-      </section>
+      ${renderDadSensorStatus(sensors)}
+      ${renderDadMaintenance(maintenance)}
+      ${renderDadSchedule(schedule)}
       <section class="panel leaving-panel">
         <div class="panel-heading">
           <h2>${text(leaving?.title)}</h2>

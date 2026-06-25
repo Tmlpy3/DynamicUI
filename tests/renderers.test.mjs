@@ -71,6 +71,24 @@ test("dashboard renders dad scene required one-click actions and kitchen light c
   assert.ok(html.includes("Kitchen light"));
 });
 
+test("dashboard renders dad departure overview with three icon summary cards", () => {
+  const html = renderDashboard(getScene("dad"));
+
+  assert.equal(html.match(/dad-info-tile/g)?.length, 3);
+  assert.equal(html.match(/dad-status-icon/g)?.length, 3);
+  assert.ok(html.includes("dad-brief-header"));
+  assert.ok(html.includes("dad-brief-actions"));
+  assert.ok(!html.includes("front-door-camera"));
+  assert.ok(!html.includes("Front Door View"));
+  assert.ok(!html.includes("✅ All home devices"));
+  assert.ok(!html.includes("⚡ Energy use today"));
+  assert.ok(!html.includes("📦 2 packages"));
+  assert.ok(html.includes("All home devices are running normally"));
+  assert.ok(html.includes("Energy use today: 3.2 kWh"));
+  assert.ok(html.includes("2 packages are waiting at the door"));
+  assert.ok(html.includes("Package area at the front door"));
+});
+
 test("dashboard renders dad maintenance and leaving actions from scene data", () => {
   const baseScene = getScene("dad");
   const requiredHtml = renderDashboard(baseScene);
@@ -96,13 +114,24 @@ test("dashboard renders dad sections by id or type when scene sections are reord
   assert.ok(html.includes(departure.actions[0]));
   assert.ok(html.includes(security.status));
   assert.ok(html.includes(security.events[0]));
+  assert.ok(html.includes("security-report-top"));
+  assert.ok(html.includes("security-timeline"));
+  assert.ok(html.includes("security-trend"));
+  assert.ok(html.includes("sensor-card"));
+  assert.ok(html.includes("sensor-heading-icon"));
+  assert.ok(html.includes("sensor-status-grid"));
+  assert.ok(html.includes("maintenance-card"));
+  assert.ok(html.includes("maintenance-heading-icon"));
+  assert.ok(html.includes("maintenance-focus"));
+  assert.ok(html.includes("schedule-card"));
+  assert.ok(html.includes("schedule-stack"));
   assert.ok(html.includes("Kitchen light"));
 });
 
 test("dashboard renders dad scene icons from the mockup direction", () => {
   const html = renderDashboard(getScene("dad"));
 
-  for (const icon of ["☀", "✅", "⚡", "🔒", "🎥", "💧", "🧃", "👦", "⚠", "🛡"]) {
+  for (const icon of ["☀", "✓", "⚡", "📦", "🔒", "🎥", "💧", "📅", "⚠", "🛡"]) {
     assert.ok(html.includes(icon), icon);
   }
 });
