@@ -1,95 +1,12 @@
-<h2>这个 HTML 界面更像哪一种？</h2>
-<p class="subtitle">左边固定 sidebar，右边展示 md 里的 IoT Dashboard 内容。先选信息架构，视觉细节后面再定。</p>
-
-<div class="cards">
-  <div class="card" data-choice="a-doc-reader" onclick="toggleSelect(this)">
-    <div class="card-image">
-      <div class="mockup">
-        <div class="mockup-header">A. 文档阅读器</div>
-        <div class="mockup-body" style="display:grid;grid-template-columns:170px 1fr;gap:12px;min-height:260px">
-          <div class="mock-sidebar" style="padding:12px">
-            <div style="font-weight:700;margin-bottom:10px">IoT Dashboard</div>
-            <div style="height:24px;background:#dbeafe;border-radius:6px;margin-bottom:8px"></div>
-            <div style="height:20px;background:#eef2ff;border-radius:6px;margin-bottom:8px"></div>
-            <div style="height:20px;background:#eef2ff;border-radius:6px;margin-bottom:8px"></div>
-            <div style="height:1px;background:#cbd5e1;margin:12px 0"></div>
-            <div style="height:18px;background:#f1f5f9;border-radius:5px;margin-bottom:7px"></div>
-            <div style="height:18px;background:#f1f5f9;border-radius:5px"></div>
-          </div>
-          <div class="mock-content" style="padding:14px">
-            <div style="height:26px;width:60%;background:#111827;border-radius:6px;margin-bottom:12px"></div>
-            <div style="height:90px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:12px"></div>
-            <div style="height:56px;background:#fff;border:1px solid #e5e7eb;border-radius:8px;margin-bottom:10px"></div>
-            <div style="height:56px;background:#fff;border:1px solid #e5e7eb;border-radius:8px"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <h3>A. 文档阅读器</h3>
-      <p>保持 md 的章节结构，sidebar 是目录锚点，右侧按 Markdown 渲染成漂亮的长文档。</p>
-    </div>
-  </div>
-
-  <div class="card" data-choice="b-dashboard-demo" onclick="toggleSelect(this)">
-    <div class="card-image">
-      <div class="mockup">
-        <div class="mockup-header">B. Dashboard 演示页</div>
-        <div class="mockup-body" style="display:grid;grid-template-columns:170px 1fr;gap:12px;min-height:260px">
-          <div class="mock-sidebar" style="padding:12px">
-            <div style="font-weight:700;margin-bottom:12px">Scenarios</div>
-            <div style="height:42px;background:#fde68a;border-radius:8px;margin-bottom:8px"></div>
-            <div style="height:42px;background:#e0f2fe;border-radius:8px;margin-bottom:8px"></div>
-            <div style="height:42px;background:#dcfce7;border-radius:8px"></div>
-          </div>
-          <div class="mock-content" style="padding:14px">
-            <div style="display:flex;gap:8px;margin-bottom:12px">
-              <div style="height:34px;flex:1;background:#fef3c7;border-radius:8px"></div>
-              <div style="height:34px;flex:1;background:#e0f2fe;border-radius:8px"></div>
-              <div style="height:34px;flex:1;background:#f0fdf4;border-radius:8px"></div>
-            </div>
-            <div style="height:82px;background:#fff7ed;border:1px solid #fed7aa;border-radius:8px;margin-bottom:10px"></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
-              <div style="height:70px;background:#fff;border:1px solid #e5e7eb;border-radius:8px"></div>
-              <div style="height:70px;background:#fff;border:1px solid #e5e7eb;border-radius:8px"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <h3>B. Dashboard 演示页</h3>
-      <p>把 md 内容重新设计成三套角色 dashboard，可点击切换长者、爸爸、妈妈场景。</p>
-    </div>
-  </div>
-
-  <div class="card" data-choice="c-hybrid" onclick="toggleSelect(this)">
-    <div class="card-image">
-      <div class="mockup">
-        <div class="mockup-header">C. 混合展示</div>
-        <div class="mockup-body" style="display:grid;grid-template-columns:190px 1fr;gap:12px;min-height:260px">
-          <div class="mock-sidebar" style="padding:12px">
-            <div style="font-weight:700;margin-bottom:10px">Pages</div>
-            <div style="height:36px;background:#dbeafe;border-radius:8px;margin-bottom:8px"></div>
-            <div style="height:36px;background:#f1f5f9;border-radius:8px;margin-bottom:8px"></div>
-            <div style="height:36px;background:#f1f5f9;border-radius:8px;margin-bottom:12px"></div>
-            <div style="font-size:11px;color:#64748b">On this page</div>
-            <div style="height:16px;background:#e2e8f0;border-radius:5px;margin-top:8px"></div>
-          </div>
-          <div class="mock-content" style="padding:14px">
-            <div style="height:68px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;margin-bottom:12px"></div>
-            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px">
-              <div style="height:86px;background:#fff;border:1px solid #e5e7eb;border-radius:8px"></div>
-              <div style="height:86px;background:#fff;border:1px solid #e5e7eb;border-radius:8px"></div>
-            </div>
-            <div style="height:44px;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="card-body">
-      <h3>C. 混合展示</h3>
-      <p>每个场景先给 dashboard 预览，再保留原文里的 AIOS 说明表格和设计细节。</p>
-    </div>
-  </div>
-</div>
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Archived Brainstorm Preview</title>
+  </head>
+  <body>
+    <h1>Archived Brainstorm Preview</h1>
+    <p>This generated preview was replaced with English-only placeholder content for the project-wide language cleanup.</p>
+    <p>Original preview file: layout-options.html</p>
+  </body>
+</html>

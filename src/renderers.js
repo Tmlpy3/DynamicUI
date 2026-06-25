@@ -27,6 +27,47 @@ function renderList(items = [], className = "copy-list") {
   return `<ul class="${attr(className)}">${items.map((item) => `<li>${text(item)}</li>`).join("")}</ul>`;
 }
 
+function renderCameraPlayer(preview = {}) {
+  return `
+    <div class="camera-player" aria-label="${attr(preview.title || "Camera playback preview")}">
+      <div class="player-frame">
+        ${preview.image ? `<img class="clip-preview-image" src="${attr(preview.image)}" alt="" />` : ""}
+        <span class="play-dot">▶</span>
+        <strong>${text(preview.title)}</strong>
+        <em>${text(preview.time)}</em>
+      </div>
+      <span>${text(preview.caption)}</span>
+    </div>`;
+}
+
+function renderEnergyState(state = {}, split = []) {
+  const parts = split.map(([, value]) => safePercent(value));
+  const cumulative = parts.slice(0, 4).reduce((values, value) => {
+    const previous = values.at(-1) ?? 0;
+    values.push(Math.min(100, previous + value));
+    return values;
+  }, []);
+  const [first = 0, second = first, third = second] = cumulative;
+
+  return `
+    <div class="energy-state">
+      <div class="energy-ring" style="--energy-a:${first}%;--energy-b:${second}%;--energy-c:${third}%"><span>${text(state.value)}</span></div>
+      <div>
+        <strong>${text(state.label)}</strong>
+        <span>${text(state.peak)}</span>
+      </div>
+    </div>`;
+}
+
+function renderSavingVisual(visual = {}) {
+  return `
+    <div class="saving-visual">
+      <span>${text(visual.label)}</span>
+      <strong>${text(visual.value)}</strong>
+      <em>${text(visual.detail)}</em>
+    </div>`;
+}
+
 function findSection(scene, ...keys) {
   return scene.sections.find((section) => keys.includes(section.id) || keys.includes(section.type));
 }
@@ -169,6 +210,33 @@ function renderDad(scene) {
     </div>`;
 }
 
+function renderElderCare(section = {}) {
+  const metrics = section.metrics || [];
+  const timeline = section.timeline || [];
+
+  return `
+      <section class="panel elder-care-panel">
+        <div class="panel-heading">
+          <h2>${text(section.title)}</h2>
+          <strong>${text(section.status)}</strong>
+        </div>
+        ${section.summary ? `<p class="elder-care-summary">${text(section.summary)}</p>` : ""}
+        <div class="elder-metric-grid">${metrics.map((metric) => `
+          <article>
+            <span>${text(metric.label)}</span>
+            <strong>${text(metric.value)}</strong>
+            <em>${text(metric.detail)}</em>
+          </article>`).join("")}
+        </div>
+        <div class="activity-timeline">${timeline.map((event) => `
+          <div class="${cx("activity-step", event.tone)}">
+            <span>${text(event.time)}</span>
+            <strong>${text(event.label)}</strong>
+          </div>`).join("")}
+        </div>
+      </section>`;
+}
+
 function renderMom(scene) {
   const pet = findSection(scene, "pet", "pet-care");
   const elderCare = findSection(scene, "elder-care");
@@ -180,6 +248,7 @@ function renderMom(scene) {
   return `
     ${renderTopbar(scene)}
     <div class="mom-top-grid">
+      ${renderElderCare(elderCare)}
       <section class="panel pet-panel">
         <h2>${text(pet?.title)}</h2>
         <div class="pet-layout">
@@ -190,13 +259,6 @@ function renderMom(scene) {
             <span>${text(pet?.next)}</span>
           </aside>
         </div>
-      </section>
-      <section class="panel elder-care-panel">
-        <div class="panel-heading">
-          <h2>${text(elderCare?.title)}</h2>
-          <strong>${text(elderCare?.status)}</strong>
-        </div>
-        ${renderList(elderCare?.items, "routine-grid")}
       </section>
     </div>
     <section class="panel family-panel">
@@ -210,10 +272,12 @@ function renderMom(scene) {
       <section class="panel camera-panel">
         <h2>${text(camera?.title)}</h2>
         ${renderList(camera?.events, "event-list")}
+        ${renderCameraPlayer(camera?.preview)}
         <div class="button-row">${(camera?.actions || []).map((label, index) => actionButton(label, index === 0 ? "primary" : "")).join("")}</div>
       </section>
       <section class="panel energy-panel">
         <h2>${text(energy?.title)}</h2>
+        ${renderEnergyState(energy?.state, energy?.split)}
         <strong class="energy-value">${text(energy?.usage)}</strong>
         <span>${text(energy?.cost)}</span>
         ${(energy?.split || []).map(([label, value]) => {
@@ -229,6 +293,7 @@ function renderMom(scene) {
       </section>
       <section class="panel suggestions-panel">
         <h2>${text(suggestions?.title)}</h2>
+        ${renderSavingVisual(suggestions?.visual)}
         ${renderList(suggestions?.items)}
         <div class="button-row">${suggestions?.action ? actionButton(suggestions.action, "primary") : ""}</div>
       </section>

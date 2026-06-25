@@ -53,7 +53,7 @@ test("each scene has a complete status, theme, and layout payload", () => {
 
 test("required elder content is present", () => {
   const text = JSON.stringify(SCENES.elder);
-  for (const phrase of ["王奶奶，早上好", "降压药", "钙片", "降糖药", "128/82", "灯光", "空调", "门锁", "家人", "求助"]) {
+  for (const phrase of ["Good morning, Grandma Wang", "Blood pressure medicine", "Calcium tablet", "Diabetes medicine", "128/82", "Lights", "Air conditioner", "Door lock", "Family", "Help"]) {
     assert.ok(text.includes(phrase), phrase);
   }
 });
@@ -61,12 +61,12 @@ test("required elder content is present", () => {
 test("elder home brief actions match the spec", () => {
   const brief = SCENES.elder.sections.find((section) => section.id === "brief");
 
-  assert.deepEqual(brief.actions, ["我知道了", "已吃药"]);
+  assert.deepEqual(brief.actions, ["Got it", "Medicine taken"]);
 });
 
 test("required dad actions are present", () => {
   const text = JSON.stringify(SCENES.dad);
-  for (const phrase of ["一键购买耗材", "一键出门模式：全部执行", "厨房灯", "全夜无异常", "今天工作顺利"]) {
+  for (const phrase of ["Buy Supplies", "Run Full Leave-Home Mode", "Kitchen light", "No issues overnight", "productive workday"]) {
     assert.ok(text.includes(phrase), phrase);
   }
 });
@@ -75,13 +75,13 @@ test("dad departure and leaving actions match the spec", () => {
   const departure = SCENES.dad.sections.find((section) => section.id === "departure");
   const leaving = SCENES.dad.sections.find((section) => section.id === "leaving");
 
-  assert.deepEqual(departure.actions, ["一键出门", "我知道了"]);
-  assert.equal(leaving.action, "一键出门模式：全部执行");
+  assert.deepEqual(departure.actions, ["Leave Home", "Got it"]);
+  assert.equal(leaving.action, "Run Full Leave-Home Mode");
 });
 
 test("required mom evening content is present", () => {
   const text = JSON.stringify(SCENES.mom);
-  for (const phrase of ["晚上好！该准备晚餐啦", "活动量比平时少 20%", "叫小明吃饭", "今日精彩回放", "一键执行节能建议"]) {
+  for (const phrase of ["Good evening, time to get dinner ready", "Activity is 20% lower than usual", "Call Xiaoming to Dinner", "Today Highlights", "Run Energy-Saving Suggestions"]) {
     assert.ok(text.includes(phrase), phrase);
   }
 });
@@ -90,7 +90,7 @@ test("mom elder-care status and camera action match the spec", () => {
   const elderCare = SCENES.mom.sections.find((section) => section.id === "elder-care");
   const camera = SCENES.mom.sections.find((section) => section.id === "camera");
 
-  assert.equal(elderCare.status, "今日规律正常");
-  assert.ok(camera.actions.includes("今日精彩回放"));
-  assert.ok(camera.actions.includes("搜索事件"));
+  assert.equal(elderCare.status, "Routine normal today");
+  assert.ok(camera.actions.includes("Today Highlights"));
+  assert.ok(camera.actions.includes("Search Events"));
 });

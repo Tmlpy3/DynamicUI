@@ -119,6 +119,7 @@ test("css reserves enough elder dashboard height for quick actions", () => {
   assert.doesNotMatch(css, /grid-template-rows:\s*104px\s+270px\s+170px\s+minmax\(0,\s*1fr\)/);
   assert.match(css, /\.theme-morning-warm\s*{[\s\S]*grid-template-rows:\s*116px\s+320px\s+205px\s+minmax\(230px,\s*1fr\)/);
   assert.match(css, /\.quick-action-grid\s*{[\s\S]*grid-auto-rows:\s*minmax\(230px,\s*1fr\)/);
+  assert.match(css, /\.metric-grid \.mini-card\s*{[\s\S]*min-height:\s*82px/);
   assert.doesNotMatch(css, /\.quick-action\s*{[^}]*overflow:\s*hidden/);
 });
 

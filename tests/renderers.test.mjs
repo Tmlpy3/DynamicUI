@@ -34,31 +34,31 @@ test("dashboard renders elder scene content without explicit design labels", () 
 
   assert.ok(html.includes('class="dashboard-stage theme-morning-warm"'));
   assert.ok(html.includes('data-scene="elder"'));
-  assert.ok(html.includes("王奶奶，早上好"));
-  assert.ok(html.includes("用药提醒"));
-  assert.ok(html.includes("我知道了"));
-  assert.ok(html.includes("已吃药"));
-  assert.doesNotMatch(html, /长者 · 早晨页面|Zone 1|visible role=elder|role=elder/);
+  assert.ok(html.includes("Good morning, Grandma Wang"));
+  assert.ok(html.includes("Medicine Reminders"));
+  assert.ok(html.includes("Got it"));
+  assert.ok(html.includes("Medicine taken"));
+  assert.doesNotMatch(html, /Elder Morning Page|Zone 1|visible role=elder|role=elder/);
 });
 
 test("dashboard renders elder quick actions from scene data", () => {
   const html = renderDashboard(getScene("elder"));
 
-  for (const label of ["灯光", "空调", "门锁", "家人", "求助"]) {
+  for (const label of ["Lights", "Air conditioner", "Door lock", "Family", "Help"]) {
     assert.ok(html.includes(label), label);
   }
 
-  for (const hardcodedLabel of ["开灯", "调节空调", "服药", "打开电视", "拨打家人"]) {
+  for (const hardcodedLabel of ["Turn on lights", "Adjust AC", "Take medicine", "Turn on TV", "Call family"]) {
     assert.ok(!html.includes(hardcodedLabel), hardcodedLabel);
   }
 });
 
 test("dashboard renders elder brief title from scene data", () => {
-  const scene = withSection(getScene("elder"), "brief", { title: "家里一切正常" });
+  const scene = withSection(getScene("elder"), "brief", { title: "Home status is normal" });
   const html = renderDashboard(scene);
 
-  assert.ok(html.includes("家里一切正常"));
-  assert.ok(!html.includes("今日家中一切正常"));
+  assert.ok(html.includes("Home status is normal"));
+  assert.ok(!html.includes("Everything at home looks normal today"));
 });
 
 test("dashboard renders dad scene required one-click actions and kitchen light content", () => {
@@ -66,25 +66,25 @@ test("dashboard renders dad scene required one-click actions and kitchen light c
 
   assert.ok(html.includes('class="dashboard-stage theme-morning-blue"'));
   assert.ok(html.includes('data-scene="dad"'));
-  assert.ok(html.includes("一键购买耗材"));
-  assert.ok(html.includes("一键出门模式：全部执行"));
-  assert.ok(html.includes("厨房灯"));
+  assert.ok(html.includes("Buy Supplies"));
+  assert.ok(html.includes("Run Full Leave-Home Mode"));
+  assert.ok(html.includes("Kitchen light"));
 });
 
 test("dashboard renders dad maintenance and leaving actions from scene data", () => {
   const baseScene = getScene("dad");
   const requiredHtml = renderDashboard(baseScene);
-  const customScene = withSection(withSection(baseScene, "maintenance", { action: "检查滤芯采购" }), "leaving", {
-    action: "离家安全全部执行",
+  const customScene = withSection(withSection(baseScene, "maintenance", { action: "Check Filter Purchase" }), "leaving", {
+    action: "Run All Leaving Safety Steps",
   });
   const customHtml = renderDashboard(customScene);
 
-  assert.ok(requiredHtml.includes("一键购买耗材"));
-  assert.ok(requiredHtml.includes("一键出门模式：全部执行"));
-  assert.ok(customHtml.includes("检查滤芯采购"));
-  assert.ok(customHtml.includes("离家安全全部执行"));
-  assert.ok(!customHtml.includes("一键购买耗材"));
-  assert.ok(!customHtml.includes("一键出门模式：全部执行"));
+  assert.ok(requiredHtml.includes("Buy Supplies"));
+  assert.ok(requiredHtml.includes("Run Full Leave-Home Mode"));
+  assert.ok(customHtml.includes("Check Filter Purchase"));
+  assert.ok(customHtml.includes("Run All Leaving Safety Steps"));
+  assert.ok(!customHtml.includes("Buy Supplies"));
+  assert.ok(!customHtml.includes("Run Full Leave-Home Mode"));
 });
 
 test("dashboard renders dad sections by id or type when scene sections are reordered", () => {
@@ -96,7 +96,7 @@ test("dashboard renders dad sections by id or type when scene sections are reord
   assert.ok(html.includes(departure.actions[0]));
   assert.ok(html.includes(security.status));
   assert.ok(html.includes(security.events[0]));
-  assert.ok(html.includes("厨房灯"));
+  assert.ok(html.includes("Kitchen light"));
 });
 
 test("dashboard renders dad scene icons from the mockup direction", () => {
@@ -110,10 +110,10 @@ test("dashboard renders dad scene icons from the mockup direction", () => {
 test("dashboard renders mom evening content and camera action", () => {
   const html = renderDashboard(getScene("mom"));
 
-  assert.ok(html.includes("晚上好！该准备晚餐啦"));
-  assert.ok(html.includes("活动量比平时少 20%，建议晚饭后陪玩 15 分钟"));
-  assert.ok(html.includes("一键执行节能建议"));
-  assert.ok(html.includes("搜索事件"));
+  assert.ok(html.includes("Good evening, time to get dinner ready"));
+  assert.ok(html.includes("Activity is 20% lower than usual. Play together for 15 minutes after dinner."));
+  assert.ok(html.includes("Run Energy-Saving Suggestions"));
+  assert.ok(html.includes("Search Events"));
 });
 
 test("dashboard renders mom pet insight and actions from scene data", () => {
@@ -167,7 +167,7 @@ test("mom dashboard includes dark theme class and search camera action", () => {
 
   assert.ok(html.includes('class="dashboard-stage theme-evening-dark"'));
   assert.ok(html.includes('data-scene="mom"'));
-  assert.ok(html.includes("搜索事件"));
+  assert.ok(html.includes("Search Events"));
 });
 
 test("dashboard escapes user-visible scene text", () => {
@@ -221,6 +221,7 @@ test("dashboard clamps energy split percentages before writing inline style valu
   assert.ok(html.includes('style="--value:100%"'));
   assert.ok(html.includes('style="--value:0%"'));
   assert.ok(html.includes('style="--value:45%"'));
+  assert.ok(html.includes('style="--energy-a:100%;--energy-b:100%;--energy-c:100%"'));
   assert.ok(!html.includes("color:red"));
   assert.ok(!html.includes("--owned"));
 });

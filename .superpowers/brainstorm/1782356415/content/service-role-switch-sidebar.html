@@ -1,72 +1,12 @@
-<h2>收敛方向：服务化角色切换 + AI-Home-UI 风格 Sidebar</h2>
-<p class="subtitle">本工程做一个本地 HTML 服务。左侧导航保持 SmartThings TV 的深色 sidebar 心智，右侧根据角色切换 md 中的页面内容。</p>
-
-<div class="mockup">
-  <div class="mockup-header">Preview: DynamicUI Role Dashboard</div>
-  <div class="mockup-body" style="min-height:520px;background:#07101f;color:#eef4ff;border-radius:14px;overflow:hidden;padding:0">
-    <div style="display:grid;grid-template-columns:236px minmax(0,1fr);min-height:520px">
-      <aside style="background:linear-gradient(180deg,#050914,#0b1220);border-right:1px solid rgba(160,180,255,.18);padding:28px 16px;display:flex;flex-direction:column;gap:24px">
-        <div style="padding:0 16px">
-          <div style="font-size:26px;font-weight:800;line-height:1">SmartThings</div>
-          <div style="font-size:11px;letter-spacing:.18em;color:#b8c2d8;margin-top:8px">AIOS DEMO</div>
-        </div>
-        <nav style="display:grid;gap:14px">
-          <div style="display:flex;align-items:center;gap:14px;min-height:54px;padding:0 16px;border-radius:10px;background:linear-gradient(100deg,#1e44a4,#0a1d4e);box-shadow:0 0 26px rgba(59,99,255,.35)">
-            <span style="font-size:23px">👵</span><strong>长者 · 早晨</strong>
-          </div>
-          <div style="display:flex;align-items:center;gap:14px;min-height:54px;padding:0 16px;border-radius:10px;color:#c4c9dc;background:rgba(255,255,255,.04)">
-            <span style="font-size:23px">👨</span><span>爸爸 · 早晨</span>
-          </div>
-          <div style="display:flex;align-items:center;gap:14px;min-height:54px;padding:0 16px;border-radius:10px;color:#c4c9dc;background:rgba(255,255,255,.04)">
-            <span style="font-size:23px">👩</span><span>妈妈 · 晚上</span>
-          </div>
-        </nav>
-        <div style="margin-top:auto;border-top:1px solid rgba(170,190,255,.16);padding-top:16px;display:grid;gap:12px;color:#c4c9dc">
-          <div style="display:flex;align-items:center;gap:14px;min-height:48px;padding:0 16px;border-radius:10px;background:rgba(255,255,255,.03)">⚙️ Settings</div>
-          <div style="display:flex;align-items:center;gap:14px;min-height:48px;padding:0 16px;border-radius:10px;background:rgba(255,255,255,.03)">✨ AIOS Notes</div>
-        </div>
-      </aside>
-
-      <main style="padding:30px 34px;background:linear-gradient(180deg,rgba(13,21,52,.26),rgba(5,10,26,.72));overflow:hidden">
-        <header style="display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:24px">
-          <div>
-            <div style="font-size:30px;font-weight:800">长者 · 早晨页面</div>
-            <div style="color:#9fb0d6;margin-top:6px">/ ?role=elder 自动切换到这一套场景</div>
-          </div>
-          <div style="display:flex;gap:10px;color:#d5d9e8">
-            <span style="padding:10px 14px;border:1px solid rgba(155,174,230,.18);border-radius:999px;background:rgba(3,8,25,.45)">🌤 24°C</span>
-            <span style="padding:10px 14px;border:1px solid rgba(155,174,230,.18);border-radius:999px;background:rgba(3,8,25,.45)">上午 7:30</span>
-          </div>
-        </header>
-
-        <section style="background:linear-gradient(135deg,rgba(255,224,149,.22),rgba(255,255,255,.05));border:1px solid rgba(255,224,149,.26);border-radius:14px;padding:22px;margin-bottom:18px">
-          <div style="font-weight:800;font-size:22px;margin-bottom:12px">🏠 Zone 1: AI 安心看板</div>
-          <div style="display:grid;gap:10px;color:#eef4ff">
-            <div>☀️ 早上好！家里一切正常，今天天气晴 25°C</div>
-            <div>💊 提醒：降压药 7:30 该吃了</div>
-            <div>🔒 门锁已锁好，放心</div>
-          </div>
-        </section>
-
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px">
-          <section style="background:rgba(255,255,255,.06);border:1px solid rgba(170,190,255,.14);border-radius:14px;padding:18px">
-            <div style="font-weight:800;margin-bottom:12px">💊 用药提醒</div>
-            <div>🔴 降压药 7:30</div>
-            <div>⚪ 钙片 12:00</div>
-            <div>⚪ 降糖药 18:00</div>
-          </section>
-          <section style="background:rgba(255,255,255,.06);border:1px solid rgba(170,190,255,.14);border-radius:14px;padding:18px">
-            <div style="font-weight:800;margin-bottom:12px">🏥 健康速览</div>
-            <div>血压 128/82 ✅ 正常</div>
-            <div>步数 350 / 3,000</div>
-            <div>体重 62kg ➡️ 稳定</div>
-          </section>
-        </div>
-
-        <section style="background:rgba(255,255,255,.04);border:1px solid rgba(170,190,255,.12);border-radius:14px;padding:18px;color:#d9e2ff">
-          <strong>右侧内容策略：</strong>先用 dashboard 组件承载 md 的页面布局，再在每个 Zone 下提供 AIOS 四模块说明。
-        </section>
-      </main>
-    </div>
-  </div>
-</div>
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Archived Brainstorm Preview</title>
+  </head>
+  <body>
+    <h1>Archived Brainstorm Preview</h1>
+    <p>This generated preview was replaced with English-only placeholder content for the project-wide language cleanup.</p>
+    <p>Original preview file: service-role-switch-sidebar.html</p>
+  </body>
+</html>
